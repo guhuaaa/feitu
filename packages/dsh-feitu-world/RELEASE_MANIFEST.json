@@ -1,0 +1,61 @@
+{
+  "release_id": "dsh-feitu-world@0.2.5",
+  "product_shell": "DeepSeek Harness",
+  "runtime_contract": "feitu-world/v1",
+  "content_id": "one-line-last-train",
+  "playable_dungeon_ids": [
+    "one-line-last-train"
+  ],
+  "pack_audit": {
+    "npm_pack_dry_run": "PASS",
+    "entry_count": 41,
+    "contains_source_novel": false,
+    "contains_local_saves": false,
+    "contains_eval_traces": false
+  },
+  "required_assets": [
+    "ui/preview.svg",
+    "ui/one-line-map.svg",
+    "ui/key-clues.svg",
+    "ui/role-cards.svg",
+    "ui/ending-routes.svg",
+    "ui/event-board.svg",
+    "ui/world-hub.svg",
+    "ui/dungeon-map-infinity.png",
+    "ui/portrait-zhunin.png",
+    "ui/portrait-linianchuan.png",
+    "ui/helmet-hud-source.png",
+    "ui/helmet-industrial-visage-v2.png",
+    "start-preview.ps1",
+    "一键启动预览.cmd",
+    "HEADSET_HUD_SOURCE_NOTES.md",
+    "ui/station-platform-concept.png",
+    "ui/spore-containment-case.png",
+    "ui/RESOURCE_GENERATION_STATUS.json",
+    "ui/preview.html",
+    "content/pressure-clock-contract.json",
+    "content/npc-visibility-contract.json",
+    "content/author-graph.json",
+    "content/character-dialogue-authority.json",
+    "content/world-registry.json",
+    "content/world-extension-contract.json"
+  ],
+  "gates": {
+    "runtime_pva": "32/32 PASS",
+    "content_ooc_audit": "PASS",
+    "dsh_eval_harness": "4/4 PASS",
+    "author_graph_compile": "PASS (25 nodes / 23 choices / 3 events)",
+    "authoring_import": "PASS (Ink/Yarn adapters; forbidden mutation rejected)",
+    "original_fact_base": "PASS",
+    "target_dungeon": "PASS",
+    "world_catalog": "PASS (10 source-backed ANNOUNCED entries)",
+    "world_catalog_builder": "PASS (ANNOUNCED merge; PLAYABLE runtime collision rejected)",
+    "world_extension_contract": "PASS (world-extension/v1; announced/playable/negative audits)",
+    "preview_contract": "PASS (health / manifest / Player View boundary / free_action)",
+    "player_surface_contract": "PASS (world hub / start / inspect / submit_choice / free_action)",
+    "preview_accessibility": "PASS (semantic regions / keyboard focus / reduced motion)",
+    "project_completion_audit": "PASS_WITH_EXTERNAL_PENDING (22 local checks)",
+    "save_integrity": "PASS (save/v1 migration and tamper rejection)"
+  },
+  "license_boundary": "FEITU_LICENSE_AND_COPYRIGHT.md"
+}

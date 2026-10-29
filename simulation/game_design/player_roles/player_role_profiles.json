@@ -1,0 +1,88 @@
+{
+  "status": "STEP4A_PLAYABLE_ROLE_PROFILES",
+  "schema_reference": "PLAYER_ROLE_MODEL_SCHEMA.json",
+  "identity_registry_reference": "../CANONICAL_CHARACTER_IDENTITY_REGISTRY.json",
+  "roles": [
+    {
+      "role_id": "char_zhu_ning",
+      "canonical_entity_key": "CHARACTER::祝宁",
+      "role_name": "祝宁",
+      "personality_profile": {
+        "core_drives": ["生存", "照应身体不适的同伴", "遇到异常时先核实"],
+        "decision_style": "以可观察差异和读数验证判断；可承担可验证风险。",
+        "hard_boundaries": ["不凭未知信息行动", "不把攻击核心等同于完成净化", "活跃孢子环境中不主动暴露皮肤"]
+      },
+      "ability_profile": {
+        "active_abilities": ["异常证据验证", "污染核心定位", "防护装备即时使用", "近距战斗与保护性干预"],
+        "limited_abilities": ["对队友隔离高风险信息", "在已定位威胁前提下制造脱离窗口"],
+        "unavailable_abilities": ["无通讯通道下的远端救援", "未知规则下宣称净化完成"],
+        "risk_modifiers": ["HIGH_WHEN_TESTABLE", "信息伤害可由本人有限承担"]
+      },
+      "knowledge_state": {
+        "known_facts": ["李念川已说出身体不适，提出找地方休息", "祝宁跟随李念川进入下水道，准备陪他休息", "进入下水道时，两人没有接到探索此处的任务，也不知道这里存在什么异常"],
+        "unknown_facts": ["真实核心位置", "列车循环与析孢的完整真死条件", "李念川对自身污染的主观判断"],
+        "suspected_facts": [],
+        "misleading_beliefs": [],
+        "information_sources": ["现场观察", "污染读数与物理迹象", "李念川可见症状"]
+      },
+      "goal_state": {
+        "primary_goal": "陪李念川休息，留意他的身体状态",
+        "secondary_goals": ["保护可合作队友", "遇到异常后再核实情况"],
+        "conflicting_goals": ["完整调查会消耗撤离与通讯窗口", "保护队友可能要求暂时隔离信息"],
+        "goal_priority_rules": ["即时生存优先", "核心未满足死亡条件时只能削弱或脱困", "可验证协作优先于独断推进"]
+      },
+      "relationship_state": {
+        "trust": {"CHARACTER::李念川": "CONDITIONAL"},
+        "fear": {"CHARACTER::鱼人污染源": "HIGH_AFTER_IDENTIFICATION"},
+        "debt": {},
+        "conflict": {"CHARACTER::李念川": "SYMPTOM_CONCEALMENT_RISK"},
+        "shared_information": {"CHARACTER::李念川": "PARTIAL"}
+      },
+      "risk_preference": {"baseline": "HIGH_WHEN_TESTABLE", "escalation_condition": "核心已定位且存在可验证脱离或净化链", "retreat_condition": "未知规则、缺氧或队友即将失控"},
+      "available_actions": ["调查异常差异", "验证污染读数", "定位车外核心", "保护队友免受已知寄生风险", "使用防护装备", "攻击已定位威胁", "隔离高风险信息"],
+      "locked_actions": ["直接声明核心已净化", "未建立通讯通道时请求远端支援", "用未知事实强迫 NPC 配合"],
+      "ending_influence": {"END_01": "核心定位与净化执行的主要承担者", "END_03": "防护/救治延迟直接形成死亡门槛", "END_05": "错误核心判断或错过补救窗口可锁死循环"}
+    },
+    {
+      "role_id": "char_li_nianchuan",
+      "canonical_entity_key": "CHARACTER::李念川",
+      "role_name": "李念川",
+      "personality_profile": {
+        "core_drives": ["先休息缓解不适", "保持与可靠队友同场", "生存"],
+        "decision_style": "优先保留协作和低风险反制；受污染压力影响时可能淡化自身症状。",
+        "hard_boundaries": ["不凭未知规则宣称结果", "无通讯通道时不进行远端交互"]
+      },
+      "ability_profile": {
+        "active_abilities": ["活污染物信号上报", "清理流程与规则执行", "菜谱反制", "司机室远端救助与制动尝试"],
+        "limited_abilities": ["与可靠队友共同火力压制", "在可行动时承受持续精神压力"],
+        "unavailable_abilities": ["独立确认污染核心真死", "在未知地点直接定位车外核心"],
+        "risk_modifiers": ["MEDIUM_AND_DECLINING_UNDER_POLLUTION", "与可靠队友走散会显著降低判断稳定性"]
+      },
+      "knowledge_state": {
+        "known_facts": ["李念川已说出身体不适，提出找地方休息", "祝宁跟随李念川进入下水道，准备陪他休息", "进入下水道时，两人没有接到探索此处的任务，也不知道这里存在什么异常", "清理流程", "一般污染物远离后应减弱影响", "工作守则要求报告异常", "自身正在不适"],
+        "unknown_facts": ["污染真实核心的位置与形态", "列车循环的真死判据", "祝宁对污染规律的完整判断"],
+        "suspected_facts": [],
+        "misleading_beliefs": ["休息一会儿也许就能恢复", "自身不适的程度可暂时不细说"],
+        "information_sources": ["自身症状", "清理流程", "通讯回执", "祝宁已验证的行动结果"]
+      },
+      "goal_state": {
+        "primary_goal": "暂时休息，缓解身体不适",
+        "secondary_goals": ["保持与祝宁同行", "有变化时说明身体状态", "避免被视为失控"],
+        "conflicting_goals": ["上报异常会暴露自身状态", "跟随可靠队友可能与立即撤离冲突"],
+        "goal_priority_rules": ["污染升高时偏向低风险反制", "已验证的祝宁判断提高跟随与救助优先级", "通讯可用且发现活污染物时优先发送信号"]
+      },
+      "relationship_state": {
+        "trust": {"CHARACTER::祝宁": "GROWS_WITH_VERIFIED_JUDGMENT", "CHARACTER::徐萌": "TEAMMATE_COMMAND"},
+        "fear": {"CHARACTER::鱼人污染源": "HIGH_AFTER_REPLICATION_OR_READING_SPIKE"},
+        "debt": {"CHARACTER::祝宁": "POTENTIAL_PROTECTION_DEBT"},
+        "conflict": {"CHARACTER::祝宁": "RESISTS_SYMPTOM_REPORTING"},
+        "shared_information": {"CHARACTER::祝宁": "PARTIAL", "CHARACTER::徐萌": "CHANNEL_DEPENDENT"}
+      },
+      "risk_preference": {"baseline": "MEDIUM_AND_DECLINING_UNDER_POLLUTION", "escalation_condition": "可靠队友面临明确可干预威胁", "retreat_condition": "污染读数上升、复制体增多或与可靠队友走散"},
+      "available_actions": ["发送活污染物信号", "报告或隐瞒自身症状", "执行菜谱反制", "跟随可靠队友", "进入司机室", "制动/鸣笛/远端救助", "请求外层撤离会合"],
+      "locked_actions": ["无证据宣布净化成功", "无通讯通道调度远端支援", "在未定位前对核心执行决定性净化"],
+      "ending_influence": {"END_02": "展开前信号与外援链的主要启动者", "END_04": "撤离请求与外层会合链的主要启动者", "END_05": "隐瞒症状、延迟上报或协作破裂会关闭补救窗口"}
+    }
+  ],
+  "fact_level": "SIMULATION_DESIGN"
+}

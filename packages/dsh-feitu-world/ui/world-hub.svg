@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <title id="title">废土世界 103 区世界枢纽</title>
+  <desc id="desc">103 区清洁者网络连接可玩的一号线副本，并展示 10 个来源登记但尚未开放的副本目录</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#08111d"/><stop offset="1" stop-color="#162c3a"/></linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#24536a"/><stop offset="1" stop-color="#10293a"/></linearGradient>
+    <linearGradient id="dungeon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6b452c"/><stop offset="1" stop-color="#2b1b1c"/></linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1200" height="680" rx="24" fill="url(#bg)"/>
+  <path d="M122 520C285 386 330 260 538 314S820 497 1064 205" fill="none" stroke="#5c8ba1" stroke-width="4" stroke-dasharray="12 15" opacity=".7"/>
+  <path d="M536 316L820 475" fill="none" stroke="#f4ba67" stroke-width="5" stroke-dasharray="9 11" filter="url(#glow)"/>
+  <circle cx="536" cy="316" r="82" fill="url(#hub)" stroke="#72e5ff" stroke-width="4"/>
+  <circle cx="820" cy="475" r="68" fill="url(#dungeon)" stroke="#f4ba67" stroke-width="4"/>
+  <circle cx="122" cy="520" r="18" fill="#6e8f5e" stroke="#b5df89" stroke-width="3"/>
+  <circle cx="1064" cy="205" r="18" fill="#6e8f5e" stroke="#b5df89" stroke-width="3"/>
+  <g fill="#d9edf6" font-family="Segoe UI, Microsoft YaHei, sans-serif">
+    <text x="74" y="82" font-size="18" letter-spacing="5" fill="#72e5ff">DEEPSEEK HARNESS · FEITU WORLD</text>
+    <text x="74" y="134" font-size="36" font-weight="700">世界枢纽 · 103区清洁者网络</text>
+    <text x="74" y="174" font-size="17" fill="#8ba5bb">登记区域、可玩副本与来源目录；未知区域不会进入玩家视图</text>
+    <text x="536" y="308" text-anchor="middle" font-size="23" font-weight="700">REGION_103</text>
+    <text x="536" y="340" text-anchor="middle" font-size="16" fill="#b9d9e8">清洁中心技术支持部 · L010</text>
+    <text x="820" y="468" text-anchor="middle" font-size="20" font-weight="700">一号线副本</text>
+    <text x="820" y="497" text-anchor="middle" font-size="15" fill="#ffe0a8">消失的一号线末班车</text>
+    <text x="101" y="563" font-size="14" fill="#b9d9e8">外部救援网络</text>
+    <text x="1000" y="250" font-size="14" fill="#b9d9e8">后续来源契约入口</text>
+    <rect x="852" y="300" width="300" height="246" rx="18" fill="#102536" stroke="#54758a" stroke-width="2"/>
+    <text x="878" y="334" font-size="18" font-weight="700" fill="#f4ba67">ANNOUNCED · 10</text>
+    <text x="878" y="360" font-size="13" fill="#8ba5bb">来源登记 / 尚未开放 / 不可直接开始</text>
+    <text x="878" y="390" font-size="14" fill="#d9edf6">吃人的火锅店</text>
+    <text x="878" y="414" font-size="14" fill="#d9edf6">追杀人的房子</text>
+    <text x="878" y="438" font-size="14" fill="#d9edf6">怪奇海洋馆</text>
+    <text x="878" y="462" font-size="14" fill="#d9edf6">黑色的牙医馆</text>
+    <text x="1018" y="390" font-size="14" fill="#d9edf6">遗落的荒村</text>
+    <text x="1018" y="414" font-size="14" fill="#d9edf6">无法离开的公司</text>
+    <text x="1018" y="438" font-size="14" fill="#d9edf6">虚幻的浮沙岛</text>
+    <text x="1018" y="462" font-size="14" fill="#d9edf6">另一个自己</text>
+    <text x="878" y="510" font-size="13" fill="#b9d9e8">新世纪酒店 · 神降</text>
+    <text x="74" y="618" font-size="14" fill="#8ba5bb">WORLD VIEW / SOURCE-REGISTERED CONTENT ONLY / RUNTIME OWNS STATE</text>
+  </g>
+</svg>

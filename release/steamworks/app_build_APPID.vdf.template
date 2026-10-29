@@ -1,0 +1,13 @@
+"appbuild"
+{
+    "appid"        "REPLACE_WITH_APP_ID"
+    "desc"         "Feitu World Windows candidate"
+    "buildoutput"  "..\\build-output"
+    "contentroot"  "..\\staging\\steam-windows"
+    "setlive"      ""
+    "preview"      "1"
+    "depots"
+    {
+        "REPLACE_WITH_DEPOT_ID" "depot_build_DEPOTID.vdf"
+    }
+}

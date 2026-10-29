@@ -1,0 +1,75 @@
+{
+  "name": "feitu-world-desktop",
+  "version": "0.2.5",
+  "private": true,
+  "description": "Minimal Electron desktop shell for the Feitu World player runtime.",
+  "author": "Feitu World contributors",
+  "type": "module",
+  "main": "main.mjs",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "prestart": "node ../../tools/stage-release.mjs",
+    "start": "electron .",
+    "predist:win": "node ../../tools/stage-release.mjs",
+    "dist:win": "electron-builder --win dir",
+    "version:set": "node scripts/set-version.mjs",
+    "release:steam": "node scripts/release-steam.mjs",
+    "release:verify": "node scripts/verify-steam-candidate.mjs",
+    "release:github": "node scripts/release-github.mjs",
+    "release:github:verify": "node scripts/verify-github-candidate.mjs",
+    "release:smoke": "node scripts/smoke-desktop.mjs",
+    "release:soak": "node ../../tools/soak-desktop.mjs",
+    "steam:vdf": "node scripts/generate-steam-vdf.mjs",
+    "verify": "node scripts/verify-desktop.mjs",
+    "test:release": "node --test test/*.test.mjs",
+    "estimate:size": "node scripts/estimate-size.mjs"
+  },
+  "devDependencies": {
+    "electron": "44.6.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.feitu.world",
+    "productName": "废土末班车",
+    "executableName": "FeituWorld",
+    "asar": true,
+    "electronDist": "node_modules/electron/dist",
+    "npmRebuild": false,
+    "files": [
+      "main.mjs",
+      "migrate-saves.mjs",
+      "model-config.mjs",
+      "settings-window.mjs",
+      "settings-preload.cjs",
+      "settings.html",
+      "settings-renderer.mjs",
+      "settings.css",
+      "soak-probe.mjs",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../../release/staging/player-runtime",
+        "to": "player-runtime"
+      }
+    ],
+    "directories": {
+      "output": "../../release/build/electron",
+      "buildResources": "build"
+    },
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        {
+          "target": "dir",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
+  }
+}

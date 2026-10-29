@@ -1,0 +1,39 @@
+{
+  "schema": "feitu-world/release-files/v1",
+  "source_root": "packages/dsh-feitu-world",
+  "staging_root": "release/staging/player-runtime",
+  "include": [
+    "package.json",
+    "README.md",
+    "RELEASE_MANIFEST.json",
+    "HEADSET_HUD_SOURCE_NOTES.md",
+    "cordis.patch.yml",
+    "server.mjs",
+    "start-preview.ps1",
+    "一键启动预览.cmd",
+    "lib",
+    "ui",
+    "content"
+  ],
+  "root_documents": [
+    "CHANGELOG.md",
+    "FEITU_RUN_GUIDE.md",
+    "FEITU_LICENSE_AND_COPYRIGHT.md"
+  ],
+  "exclude_always": [
+    "*.env",
+    "*.log",
+    "*apikey*",
+    "*vault*",
+    ".preview-saves",
+    ".dsh",
+    "reports",
+    "test",
+    "node_modules",
+    "《我在废土世界扫垃圾》完结+全番外.txt",
+    "analysis",
+    "data",
+    "simulation",
+    "upstream_sources"
+  ]
+}

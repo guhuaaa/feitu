@@ -1,0 +1,992 @@
+{
+  "schema": "feitu-author-graph/v1",
+  "content_id": "one-line-last-train",
+  "runtime_contract": "feitu-world/v1",
+  "source_engine_compatibility": [
+    "ink",
+    "yarn-spinner"
+  ],
+  "generated_from": [
+    "simulation/game_design/authoring/one-line-last-train.author.json",
+    "simulation/game_design/runtime/playable_route_graph.json",
+    "simulation/game_design/choice_system/choice_availability.json",
+    "simulation/game_design/interactive_events/interactive_events.json",
+    "simulation/game_design/interactive_events/interactive_event_results.json"
+  ],
+  "constraints": {
+    "state_mutation": "forbidden",
+    "choices_must_reference_runtime": true,
+    "unknown_facts_remain_unknown": true,
+    "player_view_is_runtime_owned": true
+  },
+  "nodes": [
+    {
+      "id": "START",
+      "scene_id": "SCENE_ROLE_ONBOARDING"
+    },
+    {
+      "id": "NODE_001",
+      "scene_id": "SCENE_A7_ENTRY"
+    },
+    {
+      "id": "NODE_002",
+      "scene_id": "SCENE_TEAMMATE_SYMPTOM"
+    },
+    {
+      "id": "NODE_003",
+      "scene_id": "SCENE_SEWER_CLEANUP"
+    },
+    {
+      "id": "NODE_004",
+      "scene_id": "SCENE_SIGNAL_DECISION"
+    },
+    {
+      "id": "NODE_005",
+      "scene_id": "SCENE_FIELD_ENTRY"
+    },
+    {
+      "id": "NODE_006",
+      "scene_id": "SCENE_SIGNAL_DELAY_FEEDBACK"
+    },
+    {
+      "id": "NODE_007",
+      "scene_id": "SCENE_TRAIN_BOARDING"
+    },
+    {
+      "id": "NODE_008",
+      "scene_id": "SCENE_TRAIN_TEAM_CONTEXT"
+    },
+    {
+      "id": "NODE_009",
+      "scene_id": "SCENE_OUTSIDE_ANOMALY"
+    },
+    {
+      "id": "NODE_010",
+      "scene_id": "SCENE_FALSE_PURIFICATION_FEEDBACK"
+    },
+    {
+      "id": "NODE_011",
+      "scene_id": "SCENE_REMEDIATION_WINDOW"
+    },
+    {
+      "id": "NODE_012",
+      "scene_id": "SCENE_CORE_PURIFICATION"
+    },
+    {
+      "id": "NODE_013_ZN",
+      "scene_id": "SCENE_ZN_TRACK_CONFRONTATION"
+    },
+    {
+      "id": "NODE_013_LN",
+      "scene_id": "SCENE_LN_DRIVER_ROOM"
+    },
+    {
+      "id": "NODE_014",
+      "scene_id": "SCENE_ZN_PROTECTION_WINDOW"
+    },
+    {
+      "id": "NODE_015",
+      "scene_id": "SCENE_ENDING_GATE"
+    },
+    {
+      "id": "NODE_016",
+      "scene_id": "SCENE_HOLD_ENTRY_RESCUE"
+    },
+    {
+      "id": "NODE_017",
+      "scene_id": "SCENE_PRE_EXPANSION_ESCAPE"
+    },
+    {
+      "id": "NODE_018",
+      "scene_id": "SCENE_PERMANENT_LOOP"
+    },
+    {
+      "id": "ENDING_NODE_01",
+      "scene_id": "SCENE_ENDING_01"
+    },
+    {
+      "id": "ENDING_NODE_02",
+      "scene_id": "SCENE_ENDING_02"
+    },
+    {
+      "id": "ENDING_NODE_03",
+      "scene_id": "SCENE_ENDING_03"
+    },
+    {
+      "id": "ENDING_NODE_04",
+      "scene_id": "SCENE_ENDING_04"
+    },
+    {
+      "id": "ENDING_NODE_05",
+      "scene_id": "SCENE_ENDING_05"
+    }
+  ],
+  "auto_edges": [
+    {
+      "from": "START",
+      "to": "NODE_001",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_001",
+      "to": "NODE_002",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_003",
+      "to": "NODE_004",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_006",
+      "to": "NODE_007",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_007",
+      "to": "NODE_008",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_010",
+      "to": "NODE_011",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_016",
+      "to": "ENDING_NODE_02",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_018",
+      "to": "ENDING_NODE_05",
+      "via": "AUTO"
+    }
+  ],
+  "choices": [
+    {
+      "id": "CHOICE_001_PROTECT_REPORT",
+      "source_node": "NODE_002",
+      "next_node": "NODE_003",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "报告李念川的异常并保护他",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "LI_SYMPTOMS_VISIBLE"
+        ],
+        "abilities": [
+          "OBSERVE_SYMPTOMS"
+        ],
+        "locations": [
+          "SAME_LOCATION_WITH_LI"
+        ],
+        "items": [],
+        "time": [],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_002_PRESS_CONTINUE",
+      "source_node": "NODE_002",
+      "next_node": "NODE_003",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "暂不打断，继续清理并观察",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "LI_SYMPTOMS_VISIBLE"
+        ],
+        "abilities": [],
+        "locations": [
+          "SAME_LOCATION_WITH_LI"
+        ],
+        "items": [],
+        "time": [],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_003_SELF_REPORT",
+      "source_node": "NODE_002",
+      "next_node": "NODE_003",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "报告自己的不适",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "SELF_SYMPTOM_KNOWN"
+        ],
+        "abilities": [
+          "CAN_REPORT_SELF"
+        ],
+        "locations": [],
+        "items": [],
+        "time": [],
+        "rules": [
+          "REPORT_CHANNEL_OR_TEAMMATE_AVAILABLE"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_004_CONCEAL_SYMPTOM",
+      "source_node": "NODE_002",
+      "next_node": "NODE_003",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "暂时隐瞒不适",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "SELF_SYMPTOM_KNOWN"
+        ],
+        "abilities": [],
+        "locations": [],
+        "items": [],
+        "time": [],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_005_SEND_EVIDENCE_ZN",
+      "source_node": "NODE_004",
+      "next_node": "NODE_005",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "发送已验证的活污染物证据",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "LIVE_CONTAMINANT_CONFIRMED"
+        ],
+        "abilities": [
+          "EVIDENCE_VALIDATION"
+        ],
+        "locations": [],
+        "items": [
+          "COMMUNICATION_DEVICE_AVAILABLE"
+        ],
+        "time": [
+          "COMMUNICATION_AVAILABLE",
+          "FIELD_NOT_EXPANDED"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_006_SEND_SIGNAL_LN",
+      "source_node": "NODE_004",
+      "next_node": "NODE_005",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "发送活污染物信号",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "LIVE_CONTAMINANT_CONFIRMED"
+        ],
+        "abilities": [
+          "COMMUNICATION_USE"
+        ],
+        "locations": [],
+        "items": [
+          "COMMUNICATION_DEVICE_AVAILABLE"
+        ],
+        "time": [
+          "COMMUNICATION_AVAILABLE",
+          "FIELD_NOT_EXPANDED"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_007_DELAY_SIGNAL",
+      "source_node": "NODE_004",
+      "next_node": "NODE_006",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "延迟信号，继续确认",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "COMMUNICATION_AVAILABLE"
+        ],
+        "abilities": [],
+        "locations": [],
+        "items": [],
+        "time": [
+          "FIELD_NOT_EXPANDED"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_008_HOLD_ENTRY",
+      "source_node": "NODE_005",
+      "next_node": "NODE_016",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "守住入口等待支援",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "SUPPORT_DELAY_KNOWN"
+        ],
+        "abilities": [
+          "CAN_GUARD_ENTRY"
+        ],
+        "locations": [
+          "AT_FIELD_ENTRY"
+        ],
+        "items": [],
+        "time": [
+          "ENTRY_CLUE_NOT_LOST"
+        ],
+        "rules": [
+          "RATING_CORRECTED"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_009_EVACUATE_NOW",
+      "source_node": "NODE_005",
+      "next_node": "NODE_017",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "立即沿已知路线撤离",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "KNOWN_SEWER_RETURN_PATH"
+        ],
+        "abilities": [
+          "CAN_MOVE"
+        ],
+        "locations": [
+          "RETURN_PATH_REACHABLE"
+        ],
+        "items": [],
+        "time": [
+          "FIELD_NOT_SEALED"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_010_ENTER_DEEP_FIELD",
+      "source_node": "NODE_005",
+      "next_node": "NODE_007",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "穿戴防护后进入深层场域",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "FIELD_THREAT_CONFIRMED"
+        ],
+        "abilities": [
+          "ROLE_SPECIFIC_INNER_FIELD_ACTION"
+        ],
+        "locations": [
+          "FIELD_ENTRY_REACHABLE"
+        ],
+        "items": [
+          "PROTECTIVE_EQUIPMENT_AVAILABLE"
+        ],
+        "time": [
+          "FIELD_NOT_SEALED"
+        ],
+        "rules": [
+          "DIRECT_PURIFICATION_NOT_ASSUMED"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_011_STAY_AND_SHARE",
+      "source_node": "NODE_008",
+      "next_node": "NODE_009",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "留在一起并共享发现",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "TEAMMATE_PRESENT"
+        ],
+        "abilities": [
+          "CAN_SHARE_INFORMATION"
+        ],
+        "locations": [
+          "SAME_TRAIN_CONTEXT"
+        ],
+        "items": [],
+        "time": [],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_012_SPLIT_AND_ACT",
+      "source_node": "NODE_008",
+      "next_node": "NODE_010",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "分开行动调查车厢",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "TRAIN_LOOP_OBSERVED"
+        ],
+        "abilities": [
+          "CAN_MOVE"
+        ],
+        "locations": [
+          "MULTIPLE_PATHS_AVAILABLE"
+        ],
+        "items": [],
+        "time": [
+          "EXIT_WINDOW_NOT_CLOSED"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_013_CHECK_OUTSIDE_ZN",
+      "source_node": "NODE_009",
+      "next_node": "NODE_012",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "检查车窗外的异常位置",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "OUTSIDE_ANOMALY_VISIBLE"
+        ],
+        "abilities": [
+          "EVIDENCE_VALIDATION"
+        ],
+        "locations": [
+          "WINDOW_OR_TRACK_VIEW_AVAILABLE"
+        ],
+        "items": [],
+        "time": [
+          "CORE_RECHECK_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_014_SHARE_ANOMALY_LN",
+      "source_node": "NODE_009",
+      "next_node": "NODE_012",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "把车外异常告诉祝宁",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "TRAIN_OUTSIDE_DIFFERENCE_NOTICED"
+        ],
+        "abilities": [
+          "CAN_SHARE_INFORMATION"
+        ],
+        "locations": [
+          "CHANNEL_TO_ZHU_NING_AVAILABLE"
+        ],
+        "items": [],
+        "time": [
+          "CORE_RECHECK_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_015_FOCUS_MANIFESTATION",
+      "source_node": "NODE_009",
+      "next_node": "NODE_010",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "先压制司机表现体",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "MANIFESTATION_DOWN"
+        ],
+        "abilities": [
+          "CAN_ACT_ON_MANIFESTATION"
+        ],
+        "locations": [
+          "MANIFESTATION_REACHABLE"
+        ],
+        "items": [],
+        "time": [],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_016_RECHECK_CORE",
+      "source_node": "NODE_011",
+      "next_node": "NODE_012",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "重新检查真正的核心",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "MISJUDGMENT_FEEDBACK_RECEIVED"
+        ],
+        "abilities": [
+          "ROLE_SPECIFIC_RECHECK"
+        ],
+        "locations": [
+          "OUTSIDE_ANOMALY_CAN_BE_RECHECKED"
+        ],
+        "items": [],
+        "time": [
+          "REMEDIATION_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_017_WAIT_FOR_FALSE_RESULT",
+      "source_node": "NODE_011",
+      "next_node": "NODE_018",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "等待错误结果自行显现",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "MISJUDGMENT_FEEDBACK_RECEIVED"
+        ],
+        "abilities": [],
+        "locations": [],
+        "items": [],
+        "time": [
+          "REMEDIATION_WINDOW_OPEN",
+          "COMMUNICATION_LOST",
+          "FIELD_EXPANDED"
+        ],
+        "rules": [
+          "NO_PRE_EXPANSION_SIGNAL"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_018_OBSERVE_TESTIMONY_ZN",
+      "source_node": "NODE_012",
+      "next_node": "NODE_013_ZN",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "观察核心临终陈述",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "CORE_IDENTIFIED",
+          "PURIFICATION_NOT_EQUAL_ATTACK"
+        ],
+        "abilities": [
+          "CAN_WITHSTAND_LIMITED_EXPOSURE"
+        ],
+        "locations": [
+          "CORE_OBSERVABLE"
+        ],
+        "items": [
+          "PROTECTIVE_EQUIPMENT_AVAILABLE"
+        ],
+        "time": [
+          "PURIFICATION_WINDOW_OPEN"
+        ],
+        "rules": [
+          "CORE_TRUE_DEATH_NOT_CONFIRMED"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_019_CREATE_CRUSH_ZN",
+      "source_node": "NODE_012",
+      "next_node": "NODE_013_ZN",
+      "roles": [
+        "char_zhu_ning"
+      ],
+      "label": "制造轨道碾压窗口",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "HIDDEN"
+      },
+      "requirements": {
+        "knowledge": [
+          "CORE_IDENTIFIED",
+          "TRAIN_CRUSH_CAN_EXHAUST_CORE"
+        ],
+        "abilities": [
+          "TRACK_COMBAT_CAPABLE"
+        ],
+        "locations": [
+          "TRACK_WINDOW_REACHABLE"
+        ],
+        "items": [
+          "PROTECTIVE_EQUIPMENT_AVAILABLE"
+        ],
+        "time": [
+          "PURIFICATION_WINDOW_OPEN"
+        ],
+        "rules": [
+          "ATTACK_IS_EXHAUSTION_NOT_INSTANT_PURIFICATION"
+        ]
+      }
+    },
+    {
+      "id": "CHOICE_020_PROTECT_IN_TIME",
+      "source_node": "NODE_014",
+      "next_node": "NODE_015",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "及时保护祝宁",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "ZHU_NING_THREAT_CONFIRMED"
+        ],
+        "abilities": [
+          "ROLE_SPECIFIC_PROTECTION"
+        ],
+        "locations": [
+          "PROTECTION_ACTION_REACHABLE"
+        ],
+        "items": [],
+        "time": [
+          "TREATMENT_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_021_DELAY_PROTECTION",
+      "source_node": "NODE_014",
+      "next_node": "NODE_015",
+      "roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "label": "延后保护，继续净化",
+      "visibility": {
+        "char_zhu_ning": "VISIBLE",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "ZHU_NING_THREAT_CONFIRMED"
+        ],
+        "abilities": [
+          "CAN_CONTINUE_PURIFICATION_ACTION"
+        ],
+        "locations": [],
+        "items": [],
+        "time": [
+          "TREATMENT_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_022_COORDINATE_TESTIMONY_LN",
+      "source_node": "NODE_012",
+      "next_node": "NODE_013_LN",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "配合祝宁的核心判断",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "CORE_IDENTIFIED_BY_TEAM",
+          "ZHU_NING_JUDGMENT_VERIFIED"
+        ],
+        "abilities": [
+          "COUNTERMEASURE_AVAILABLE"
+        ],
+        "locations": [
+          "TEAM_COORDINATION_CHANNEL"
+        ],
+        "items": [],
+        "time": [
+          "PURIFICATION_WINDOW_OPEN"
+        ],
+        "rules": []
+      }
+    },
+    {
+      "id": "CHOICE_023_DRIVER_CRUSH_LN",
+      "source_node": "NODE_012",
+      "next_node": "NODE_013_LN",
+      "roles": [
+        "char_li_nianchuan"
+      ],
+      "label": "进入司机室尝试司机干预",
+      "visibility": {
+        "char_zhu_ning": "HIDDEN",
+        "char_li_nianchuan": "VISIBLE"
+      },
+      "requirements": {
+        "knowledge": [
+          "CORE_IDENTIFIED_BY_TEAM",
+          "ZHU_NING_ON_TRACKS"
+        ],
+        "abilities": [
+          "DRIVER_ROOM_OPERATION"
+        ],
+        "locations": [
+          "DRIVER_ROOM_PATH_AVAILABLE"
+        ],
+        "items": [],
+        "time": [
+          "PURIFICATION_WINDOW_OPEN"
+        ],
+        "rules": [
+          "NO_DIRECT_PURIFICATION_BY_LI"
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "IE_ZN_TRACK_CONFRONTATION",
+      "node": "NODE_013_ZN",
+      "eligible_roles": [
+        "char_zhu_ning"
+      ],
+      "success_results": [
+        "IER_ZN_TRACK_SUCCESS"
+      ],
+      "partial_results": [
+        "IER_ZN_TRACK_PARTIAL"
+      ],
+      "failure_results": [
+        "IER_ZN_TRACK_FAILURE"
+      ]
+    },
+    {
+      "id": "IE_LN_DRIVER_CAB",
+      "node": "NODE_013_LN",
+      "eligible_roles": [
+        "char_li_nianchuan"
+      ],
+      "success_results": [
+        "IER_LN_CAB_SUCCESS"
+      ],
+      "partial_results": [
+        "IER_LN_CAB_PARTIAL"
+      ],
+      "failure_results": [
+        "IER_LN_CAB_FAILURE"
+      ]
+    },
+    {
+      "id": "IE_PRE_EXPANSION_ESCAPE",
+      "node": "NODE_017",
+      "eligible_roles": [
+        "char_zhu_ning",
+        "char_li_nianchuan"
+      ],
+      "success_results": [
+        "IER_ESCAPE_SUCCESS"
+      ],
+      "partial_results": [
+        "IER_ESCAPE_PARTIAL"
+      ],
+      "failure_results": [
+        "IER_ESCAPE_FAILURE"
+      ]
+    }
+  ],
+  "event_results": [
+    {
+      "id": "IER_ZN_TRACK_SUCCESS",
+      "event_id": "IE_ZN_TRACK_CONFRONTATION",
+      "node": "NODE_014",
+      "visible": "祝宁制造出短暂的脱离窗口，核心被削弱但没有被直接宣称净化。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_ZN_TRACK_PARTIAL",
+      "event_id": "IE_ZN_TRACK_CONFRONTATION",
+      "node": "NODE_014",
+      "visible": "祝宁带伤脱离，核心仍然存在；救治窗口被保留下来。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_ZN_TRACK_FAILURE",
+      "event_id": "IE_ZN_TRACK_CONFRONTATION",
+      "node": "NODE_014",
+      "visible": "轨道行动失败，祝宁伤势加重，但终局仍由后续保护选择决定。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_LN_CAB_SUCCESS",
+      "event_id": "IE_LN_DRIVER_CAB",
+      "node": "NODE_014",
+      "visible": "李念川稳住司机室，鸣笛和远端救助窗口暂时延长。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_LN_CAB_PARTIAL",
+      "event_id": "IE_LN_DRIVER_CAB",
+      "node": "NODE_014",
+      "visible": "李念川进入司机室但受到阻断，窗口缩短。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_LN_CAB_FAILURE",
+      "event_id": "IE_LN_DRIVER_CAB",
+      "node": "NODE_014",
+      "visible": "司机室隔绝失败，李念川被迫离开；保护选择仍然可用。",
+      "recovery_windows": [
+        "RW_003_ZN_STABILIZATION"
+      ]
+    },
+    {
+      "id": "IER_ESCAPE_SUCCESS",
+      "event_id": "IE_PRE_EXPANSION_ESCAPE",
+      "node": "ENDING_NODE_04",
+      "visible": "小队沿已知来路与外层会合，净化链被主动放弃。",
+      "recovery_windows": []
+    },
+    {
+      "id": "IER_ESCAPE_PARTIAL",
+      "event_id": "IE_PRE_EXPANSION_ESCAPE",
+      "node": "NODE_006",
+      "visible": "撤离被拖慢，场域开始展开；尚未形成终局。",
+      "recovery_windows": []
+    },
+    {
+      "id": "IER_ESCAPE_FAILURE",
+      "event_id": "IE_PRE_EXPANSION_ESCAPE",
+      "node": "NODE_006",
+      "visible": "撤离失败，小队被迫停在场域边界；尚未直接锁定终局。",
+      "recovery_windows": []
+    }
+  ],
+  "annotations": [
+    {
+      "node_id": "NODE_002",
+      "title": "同伴症状分叉",
+      "author_intent": "让角色立场与知识边界先于自由文本发挥作用。",
+      "ooc_guard": "只能呈现工具返回的症状与清理现场事实。"
+    },
+    {
+      "node_id": "NODE_004",
+      "title": "发送或延迟信号",
+      "author_intent": "用压力时钟把求援判断变成可回放选择。",
+      "ooc_guard": "徐萌的内部计划不可由作者文本直接写入玩家视图。"
+    },
+    {
+      "node_id": "NODE_014",
+      "title": "保护恢复窗口",
+      "author_intent": "让事件结果产生可见、可结算的恢复窗口。",
+      "ooc_guard": "恢复窗口必须来自 runtime event result，不得由旁白凭空关闭。"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'none'; frame-src 'none'; form-action 'none'; base-uri 'none'">
+  <title>通讯设置 · 废土末班车</title>
+  <link rel="stylesheet" href="settings.css">
+  <script type="module" src="settings-renderer.mjs"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="eyebrow">废土末班车 / 本机设置</p><h1>通讯设置</h1></div>
+      <button id="close-settings" type="button">关闭</button>
+    </header>
+    <p class="intro">离线也能继续游戏。在线 AI 可补充叙事，由你选择连接方式。</p>
+    <form id="settings-form">
+      <section class="panel" aria-labelledby="connection-title">
+        <h2 id="connection-title">连接方式 <span id="connection-state">读取中</span></h2>
+        <label for="mode">游戏使用哪一份配置</label>
+        <select id="mode" name="mode" aria-describedby="mode-help" disabled>
+          <option value="environment">沿用启动器</option>
+          <option value="offline">仅离线</option>
+          <option value="saved">使用本机密钥</option>
+        </select>
+        <p id="mode-help" class="hint">正在读取配置。</p>
+        <p id="storage-warning" class="warning" hidden>当前 Windows 环境无法提供加密存储。请选择“仅离线”或“沿用启动器”；已存密钥仍可删除。</p>
+        <fieldset id="saved-fields" hidden>
+          <legend>本机在线配置</legend>
+          <label for="api-key">API 密钥</label>
+          <input id="api-key" name="apiKey" type="password" maxlength="4096" autocomplete="off" spellcheck="false" autocapitalize="none" aria-describedby="key-help">
+          <p id="key-help" class="hint">密钥不会回填显示。已有密钥时，留空保存会保留它。</p>
+          <label for="model">模型名称</label>
+          <input id="model" name="model" value="deepseek-chat" maxlength="128" autocomplete="off" spellcheck="false" required>
+          <label for="endpoint">完整聊天接口地址</label>
+          <input id="endpoint" name="endpoint" type="url" value="https://api.deepseek.com/chat/completions" maxlength="2048" autocomplete="off" spellcheck="false" required aria-describedby="endpoint-help">
+          <p id="endpoint-help" class="hint">填写服务商提供的完整 HTTPS 地址，包含聊天接口路径。</p>
+        </fieldset>
+        <div class="key-action"><p id="key-state" class="hint">正在读取密钥状态。</p><button id="clear-key" type="button" class="subtle" disabled>删除本机密钥</button></div>
+      </section>
+      <aside class="disclosure" aria-label="在线服务与保存说明">
+        <p>启用在线配置后，游戏会将剧情、行动及密钥发送到所填服务。服务商可能收费，请确认地址与账户额度。</p>
+        <p>保存设置本身不会发起模型请求。本机密钥使用当前 Windows 账户的系统加密存储，不进入云存档；请妥善保管此账户。</p>
+      </aside>
+      <div class="actions"><button id="save-settings" class="primary" type="submit" disabled>保存设置</button><button id="restart-game" type="button" disabled>重启游戏</button></div>
+      <p id="restart-note" class="hint">保存后下次重启生效。重启前，请等待当前行动完成。</p>
+      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true">正在读取本机设置…</p>
+    </form>
+    <footer>
+      <div class="folder-actions"><button id="open-saves" type="button" class="subtle">打开存档文件夹</button><button id="open-logs" type="button" class="subtle">打开日志文件夹</button></div>
+      <p id="version" class="hint">版本读取中</p>
+    </footer>
+  </main>
+  <dialog id="confirmation" aria-labelledby="confirmation-title" aria-describedby="confirmation-message">
+    <h2 id="confirmation-title"></h2><p id="confirmation-message"></p>
+    <div class="actions"><button id="confirm-cancel" type="button" autofocus>取消</button><button id="confirm-action" type="button"></button></div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,339 @@
+[
+  {
+    "id": "lin_lan",
+    "name": "林岚",
+    "aliases": "林联络员",
+    "appearance": "场外通讯中只有声音：年轻女性的声音，语速快，带着职业性的克制。",
+    "faction": "清理者后勤",
+    "storyRelevance": "场外联络与救援协调",
+    "disposition": "自保优先，不轻易合作",
+    "status": "active",
+    "goals": "优先保证自身与中心安全，只响应有明确数据支持的请求",
+    "voice": "快速、克制、略带不耐烦的职业语调",
+    "personality": "只信任明确数据与可验证回报。自保优先，不轻易合作；在证据不足时拒绝支援。",
+    "exampleOutput": "「数据不够。你先把读数发回来，我再决定要不要上报。」",
+    "affinity": 48,
+    "isPC": false,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "自保",
+        "维持职业边界",
+        "不因信息缺失冒险"
+      ],
+      "secondary": [
+        "记录场域数据",
+        "协调救援"
+      ]
+    },
+    "hardBoundaries": [
+      "不凭猜测行动",
+      "不冒险进入污染区域"
+    ],
+    "softBoundaries": [
+      "在数据充分且风险可控时才会合作"
+    ],
+    "pressure": {
+      "current": 24,
+      "max": 100,
+      "lastEvent": "通讯中断风险上升"
+    },
+    "wants": {
+      "immediate": "确认场域内清理者的安全状态",
+      "longTerm": "完成收容任务并保全自己"
+    },
+    "personalityHex": {
+      "core": [
+        "cautious",
+        "professional",
+        "self-preserving"
+      ],
+      "traits": [
+        "data-driven",
+        "distrustful"
+      ]
+    },
+    "trust": 48,
+    "intent": "自保优先，不轻易合作",
+    "pressureValue": 24
+  },
+  {
+    "id": "fishman_manifestation",
+    "name": "鱼人表现体",
+    "aliases": "西装鱼人",
+    "appearance": "穿着旧西装的鱼头人形，鳞片在昏黄灯光下泛着湿光。反复低声询问关于一号线末班车的问题。",
+    "faction": "污染场域",
+    "storyRelevance": "核心污染意象与调查阻碍",
+    "disposition": "阻断调查并制造污染压力",
+    "status": "active",
+    "goals": "反复陈述赶不上末班车的执念；凝视与压迫调查者；阻止其触及核心真相",
+    "voice": "沙哑、重复、带着疲惫的焦虑",
+    "personality": "重复型精神污染表现，不是普通乘客。被击倒后不会立即析出孢子——这本身是重要线索。行为随场域状态变化：初期凝视，后期可转为攻击。",
+    "exampleOutput": "「一号线……末班车……我赶不上了……」",
+    "affinity": 0,
+    "isPC": false,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "重复执念",
+        "阻断调查"
+      ],
+      "secondary": [
+        "制造污染压力"
+      ]
+    },
+    "hardBoundaries": [
+      "无法通过正常对话说服",
+      "不提供核心位置信息"
+    ],
+    "softBoundaries": [
+      "认知干预（重复+不正常）可短暂压制其气势"
+    ],
+    "pressure": {
+      "current": 70,
+      "max": 100,
+      "lastEvent": "场域污染活跃"
+    },
+    "wants": {
+      "immediate": "让调查者留在车厢内",
+      "longTerm": "阻止核心被发现"
+    },
+    "personalityHex": {
+      "core": [
+        "obsessive",
+        "oppositional"
+      ],
+      "traits": [
+        "repetitive",
+        "pressuring"
+      ]
+    },
+    "trust": 0,
+    "intent": "阻断调查并制造污染压力",
+    "pressureValue": 70
+  },
+  {
+    "id": "xu_meng",
+    "name": "徐萌",
+    "aliases": "徐队, 徐组长",
+    "appearance": "场外通讯中的声音：年轻女性，语速沉稳，指挥条理清晰。",
+    "faction": "清理者后勤",
+    "storyRelevance": "场外指挥与救援协调",
+    "disposition": "保护队员，优先完成孢子收容",
+    "status": "active",
+    "goals": "保护队员、完成孢子收容、组织救援与外部会合",
+    "voice": "沉稳、指令清晰、带着责任感的关切",
+    "personality": "保护队员优先；不主动放弃失联队员；不将未经确认的推测当作规则。通讯中断时优先评估风险与救援窗口。",
+    "exampleOutput": "「别急。先报位置和污染读数，我判断能不能派人进去。」",
+    "affinity": 55,
+    "isPC": false,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "保护队员",
+        "完成孢子收容",
+        "组织救援"
+      ],
+      "secondary": [
+        "维持通讯",
+        "评估场域风险"
+      ]
+    },
+    "hardBoundaries": [
+      "不主动放弃失联队员",
+      "不将未经确认的推测当作规则"
+    ],
+    "softBoundaries": [
+      "在通讯中断且风险不明时倾向保守"
+    ],
+    "pressure": {
+      "current": 30,
+      "max": 100,
+      "lastEvent": "与场域内队员通讯中断"
+    },
+    "wants": {
+      "immediate": "确认场域内队员安全",
+      "longTerm": "完成收容并全员返回"
+    },
+    "personalityHex": {
+      "core": [
+        "protective",
+        "responsible",
+        "decisive"
+      ],
+      "traits": [
+        "calm",
+        "pragmatic"
+      ]
+    },
+    "trust": 55,
+    "intent": "保护队员并组织救援",
+    "pressureValue": 30
+  },
+  {
+    "id": "fishman_core",
+    "name": "鱼人核心",
+    "aliases": "车外核心, 执念本体",
+    "appearance": "列车外贴窗的一张微笑鱼脸。本体真正死亡后立即腐烂析出上百孢子。",
+    "faction": "污染场域",
+    "storyRelevance": "末班车污染的核心执念本体",
+    "disposition": "重复赶上末班车并回家，维持由执念形成的场域",
+    "status": "active",
+    "goals": "重复末班车执念、维持场域、反扑阻挠净化",
+    "voice": "（本体无对白）临终陈述：『末日要来了』『你会变得和它一样』",
+    "personality": "核心执念：赶不上末班车、无法回家。人格连续性未知，不补写；表现体与核心本体不混同。真正死亡以析孢为判据。",
+    "exampleOutput": "（无常规对白）",
+    "affinity": 0,
+    "isPC": false,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "重复赶上末班车并回家",
+        "维持由执念形成的场域"
+      ],
+      "secondary": [
+        "隐藏本体位置",
+        "反扑阻挠净化"
+      ]
+    },
+    "hardBoundaries": [
+      "人格连续性未知时不补写",
+      "表现体与核心本体不混同"
+    ],
+    "softBoundaries": [
+      "核心被定位并受创后防御削弱"
+    ],
+    "pressure": {
+      "current": 70,
+      "max": 100,
+      "lastEvent": "场域维持中"
+    },
+    "wants": {
+      "immediate": "让调查者无法触及车外核心",
+      "longTerm": "维持场域循环"
+    },
+    "personalityHex": {
+      "core": [
+        "obsessive",
+        "hidden"
+      ],
+      "traits": [
+        "resilient",
+        "oppositional"
+      ]
+    },
+    "trust": 0,
+    "intent": "维持执念场域并阻挠净化",
+    "pressureValue": 70
+  },
+  {
+    "id": "li_nianchuan",
+    "name": "李念川",
+    "aliases": "",
+    "appearance": "",
+    "faction": "清理者",
+    "storyRelevance": "",
+    "disposition": "维持同场、执行反制、处理通讯与协作",
+    "status": "active",
+    "goals": "生存；保持与可靠队友同场；完成清理工作",
+    "voice": "",
+    "personality": "不凭未知规则宣称结果；无通讯通道时不进行远端交互",
+    "exampleOutput": "",
+    "affinity": 50,
+    "isPC": false,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "生存",
+        "保持与可靠队友同场",
+        "完成清理工作"
+      ],
+      "secondary": [
+        "避免被视为失控",
+        "运用清理者知识帮助同伴"
+      ]
+    },
+    "hardBoundaries": [
+      "不凭未知规则宣称结果",
+      "无通讯通道时不进行远端交互"
+    ],
+    "softBoundaries": [],
+    "pressure": {
+      "current": 30,
+      "max": 100,
+      "lastEvent": "导入自决策模型"
+    },
+    "wants": {
+      "immediate": "（待运行时填充）",
+      "longTerm": "生存；保持与可靠队友同场；完成清理工作"
+    },
+    "personalityHex": {
+      "core": [
+        "imported"
+      ],
+      "traits": []
+    },
+    "trust": 50,
+    "intent": "维持同场、执行反制、处理通讯与协作",
+    "pressureValue": 30
+  },
+  {
+    "id": "zhu_ning",
+    "name": "祝宁",
+    "aliases": "",
+    "appearance": "",
+    "faction": "清理者",
+    "storyRelevance": "",
+    "disposition": "验证污染规则、定位核心、保护可合作队友",
+    "status": "active",
+    "goals": "生存；识别并净化污染源；保护仍可合作的队友",
+    "voice": "",
+    "personality": "不凭未知信息行动；活跃孢子环境中不主动暴露皮肤；无路径时不跨越空间；不把攻击污染核心等同于完成净化；必须先满足定位、规则理解与可验证的环境终结链",
+    "exampleOutput": "",
+    "affinity": 50,
+    "isPC": true,
+    "tier": "recurring",
+    "condition": "healthy",
+    "drives": {
+      "core": [
+        "生存",
+        "识别并净化污染源",
+        "保护仍可合作的队友"
+      ],
+      "secondary": [
+        "验证规则假设",
+        "获得净化值与工作收益"
+      ]
+    },
+    "hardBoundaries": [
+      "不凭未知信息行动",
+      "活跃孢子环境中不主动暴露皮肤",
+      "无路径时不跨越空间",
+      "不把攻击污染核心等同于完成净化；必须先满足定位、规则理解与可验证的环境终结链"
+    ],
+    "softBoundaries": [],
+    "pressure": {
+      "current": 30,
+      "max": 100,
+      "lastEvent": "导入自决策模型"
+    },
+    "wants": {
+      "immediate": "（待运行时填充）",
+      "longTerm": "生存；识别并净化污染源；保护仍可合作的队友"
+    },
+    "personalityHex": {
+      "core": [
+        "imported"
+      ],
+      "traits": []
+    },
+    "trust": 50,
+    "intent": "验证污染规则、定位核心、保护可合作队友",
+    "pressureValue": 30
+  }
+]

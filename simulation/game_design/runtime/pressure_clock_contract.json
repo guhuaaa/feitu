@@ -1,0 +1,37 @@
+{
+  "schema": "feitu-world/pressure-clock/v1",
+  "source_refs": [
+    "feitu_campaign/feitu-last-train.mod-feitu-last-train-state.json",
+    "feitu_campaign/feitu-last-train.npcs.json",
+    "simulation/game_design/choice_system/choice_effects.json"
+  ],
+  "initial": {
+    "contamination": 38,
+    "time_remaining": 80,
+    "communication": "AVAILABLE"
+  },
+  "thresholds": {
+    "active": 55,
+    "critical": 80,
+    "collapse": 95
+  },
+  "action_costs": {
+    "move": 1,
+    "inspect": 1,
+    "take": 1,
+    "use": 1,
+    "talk": 0,
+    "submit_choice": 2,
+    "resolve_interactive_event": 2
+  },
+  "npc_plan_states": {
+    "XUMENG": ["OUTER_SUPPORT", "VERIFYING_SIGNAL", "RATING_REVISED", "CHANNEL_UNSTABLE", "OFFLINE"],
+    "LINLAN": ["AVAILABLE", "DATA_REQUIRED", "CHANNEL_UNSTABLE", "OFFLINE"],
+    "HUNTER": ["LEFT_AFTER_E_RATING", "AUTHORIZED_RETURN"]
+  },
+  "hard_boundaries": [
+    "pressure_never_invents_new_map_edges_or_facts",
+    "collapse_changes_pressure_and_communication_only",
+    "npc_status_is_a_player_visible_summary_not_hidden_plan_data"
+  ]
+}

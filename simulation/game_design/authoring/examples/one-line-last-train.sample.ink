@@ -1,0 +1,14 @@
+=== NODE_002 ===
+# title: 同伴症状分叉
+# author_intent: 让角色立场与知识边界先于自由文本发挥作用。
+# ooc_guard: 只能呈现工具返回的症状与清理现场事实。
+
+=== NODE_004 ===
+# title: 发送或延迟信号
+# author_intent: 用压力时钟把求援判断变成可回放选择。
+# ooc_guard: 徐萌的内部计划不可由作者文本直接写入玩家视图。
+
+=== NODE_014 ===
+# title: 保护恢复窗口
+# author_intent: 让事件结果产生可见、可结算的恢复窗口。
+# ooc_guard: 恢复窗口必须来自 runtime event result，不得由旁白凭空关闭。

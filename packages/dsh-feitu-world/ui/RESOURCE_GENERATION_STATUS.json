@@ -1,0 +1,18 @@
+{
+  "generated_at": "2026-08-19",
+  "assets": [
+    {"id":"UI-PREVIEW-001","path":"ui/preview.svg","type":"vector-ui-preview","status":"ready","note":"与 DSH feitu_game 玩家可见状态字段对齐"},
+    {"id":"MAP-001","path":"ui/one-line-map.svg","type":"vector-full-map","status":"ready","note":"10 个地点和冻结连接"},
+    {"id":"CLUE-001","path":"ui/key-clues.svg","type":"vector-clue-sheet","status":"ready","note":"首批关键线索简图"},
+    {"id":"ROLE-001","path":"ui/role-cards.svg","type":"vector-role-cards","status":"ready","note":"两名可玩角色的能力白名单与知识边界"},
+    {"id":"ROUTE-001","path":"ui/ending-routes.svg","type":"vector-ending-route","status":"ready","note":"冻结终局路线可视化"},
+    {"id":"EVENT-001","path":"ui/event-board.svg","type":"vector-event-board","status":"ready","note":"三类交互事件与可见结果标签"},
+    {"id":"HUB-001","path":"ui/world-hub.svg","type":"vector-world-hub","status":"ready","note":"103区世界枢纽、唯一可玩副本与10个来源登记未开放目录"},
+    {"id":"MAP-002","path":"ui/dungeon-map-infinity.png","type":"raster-infinity-loop-map","status":"ready","note":"根据副本描述生成的无穷符号轨道；列车首尾相接、每站可见鱼头人登车节点；HTML 图层覆盖地点标记"},
+    {"id":"ROLE-002","path":"ui/portrait-zhunin.png","type":"raster-half-body-portrait","status":"ready","note":"祝宁半身像；选择角色后固定显示在现场叙事上方"},
+    {"id":"ROLE-003","path":"ui/portrait-linianchuan.png","type":"raster-half-body-portrait","status":"ready","note":"年轻版李念川半身像；狗狗眼、清理队员装备"},
+    {"id":"HUD-001","path":"ui/helmet-hud-source.png","type":"raster-first-person-helmet-panel","status":"ready","note":"依据原文头盔描写生成的第一视角面罩底图；实时读数由 HTML HUD 嵌入"},
+    {"id":"RASTER-001","path":"ui/station-platform-concept.png","type":"raster-concept-art","status":"ready","note":"内置 image_gen 生成；用于主界面/宣传页的地下站台氛围图，无可读文字、logo 或版权素材"},
+    {"id":"RASTER-002","path":"ui/spore-containment-case.png","type":"raster-prop-art","status":"ready","note":"内置 image_gen 生成；对应 I003 孢子收容箱的玩家背包视觉资源"}
+  ]
+}

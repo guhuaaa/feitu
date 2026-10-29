@@ -1,0 +1,25 @@
+{
+  "schema": "feitu-world/world-extension/v1",
+  "contract_version": 1,
+  "purpose": "允许来源可审计的社区副本扩展接入 DSH 世界枢纽，同时保持运行时和 Player View 的权威边界。",
+  "required_extension_fields": ["extension_id", "version", "source_refs", "dungeons", "assets"],
+  "allowed_dungeon_statuses": ["ANNOUNCED", "PLAYABLE", "RETIRED"],
+  "status_rules": {
+    "ANNOUNCED": {"playable": false, "content_manifest": false, "entry_node": false},
+    "PLAYABLE": {"playable": true, "content_manifest": true, "entry_node": true},
+    "RETIRED": {"playable": false, "content_manifest": true, "entry_node": true}
+  },
+  "governance": {
+    "source_ref_required": true,
+    "player_view_registry_only": true,
+    "runtime_state_owner": "packages/dsh-feitu-world/lib/runtime.js",
+    "llm_must_not_mutate_state": true,
+    "forbidden_extension_fields": ["runtime_module", "state_mutations", "npc_private_plan", "hidden_world_state"],
+    "playable_requires_content_manifest_audit": true
+  },
+  "asset_rules": {
+    "path_must_be_relative": true,
+    "status_required": "ready",
+    "license_ref_required": true
+  }
+}

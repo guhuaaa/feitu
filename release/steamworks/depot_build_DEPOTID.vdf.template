@@ -1,0 +1,14 @@
+"DepotBuildConfig"
+{
+    "DepotID"      "REPLACE_WITH_DEPOT_ID"
+    "ContentRoot"  "..\\staging\\steam-windows"
+    "FileMapping"
+    {
+        "LocalPath"  "*"
+        "DepotPath"  "."
+        "recursive"  "1"
+    }
+    "FileExclusion" "*.pdb"
+    "FileExclusion" "*.log"
+    "FileExclusion" ".env*"
+}

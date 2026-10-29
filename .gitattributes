@@ -1,0 +1,4 @@
+# Release fingerprints hash source bytes; preserve authored encodings and line endings.
+* -text
+*.png binary
+*.ico binary

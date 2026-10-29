@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>废土世界｜消失的一号线末班车</title>
+  <style>
+    :root{--bg:#08111d;--panel:#111e2e;--line:#416078;--cyan:#72e5ff;--amber:#f4ba67;--muted:#9bb1c2;--danger:#d76565;--violet:#b89cff;--good:#75d9a1;--glass:rgba(9,24,39,.68)}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;background:#06101a url('/ui/station-platform-concept.png') center/cover fixed no-repeat;color:#d9edf6;font:14px/1.5 "Segoe UI","Microsoft YaHei",sans-serif;position:relative}body:before{content:'';position:fixed;inset:0;background:linear-gradient(180deg,rgba(4,13,23,.72),rgba(4,13,23,.84)),radial-gradient(circle at 55% 35%,rgba(33,72,91,.22),transparent 58%);pointer-events:none}.shell{position:relative;z-index:1;width:min(1480px,100%);margin:auto;padding:22px}
+    header{display:flex;justify-content:space-between;align-items:end;padding:10px 4px 18px;border-bottom:1px solid #7190a644}.eyebrow{letter-spacing:.22em;color:var(--cyan);font-size:11px;text-transform:uppercase}h1{margin:2px 0 0;font-size:26px;letter-spacing:.04em;text-shadow:0 2px 20px #000}.meta{color:var(--muted);text-align:right}.chip{border:1px solid #72e5ff66;border-radius:999px;padding:2px 7px;color:var(--cyan);font-size:11px;white-space:nowrap}.muted{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;grid-template-rows:minmax(590px,auto) auto;gap:16px;margin-top:16px}.panel{background:linear-gradient(145deg,rgba(22,45,63,.67),rgba(7,19,32,.66));border:1px solid #6c8ca34d;border-radius:12px;box-shadow:0 15px 40px #02070e99;backdrop-filter:blur(10px);overflow:hidden}.panel-title{padding:14px 16px;border-bottom:1px solid #6c8ca344;color:var(--amber);font-weight:650;background:#07182766}.panel-body{padding:14px 16px}.stack{display:grid;gap:16px;grid-column:2;grid-row:1 / span 2;align-content:start}.action-deck{grid-column:1;grid-row:2;min-height:210px}.narrative{grid-column:1;grid-row:1;min-height:590px;display:flex;flex-direction:column}.drawer{position:fixed;z-index:30;inset:0;width:100vw;height:100vh;max-height:none;overflow:auto;border-radius:0;background:linear-gradient(145deg,rgba(11,31,47,.98),rgba(4,14,25,.99));box-shadow:none;border-color:#72e5ff77}.drawer-map .map{min-height:calc(100vh - 53px);height:calc(100vh - 53px)}.drawer-close{float:right;padding:4px 8px;margin:-5px -4px 0 8px;border-radius:6px;font-size:12px;background:#0b2234;border-color:#52758b}.hud-tools{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:7px}.hud-icon{display:inline-flex;align-items:center;gap:6px;justify-content:center;min-width:42px;padding:7px 9px;border:1px solid #72e5ff66;border-radius:8px;background:#081a2ab8;color:#d8f6ff;font-size:16px;line-height:1}.hud-icon span{font-size:10px;color:var(--muted)}.hud-icon:hover{background:#15344b;color:#fff}
+    .helmet-sim{position:relative;min-height:260px;margin:-2px 0 12px;border:1px solid #72e5ff55;border-radius:9px;overflow:hidden;background:#03070c}.helmet-sim img{display:block;width:100%;height:260px;object-fit:cover;filter:saturate(.75) contrast(1.08) brightness(.82)}.helmet-data-overlay{position:absolute;inset:10px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:space-between;gap:6px;pointer-events:none}.helmet-data-overlay span{padding:4px 6px;border:1px solid #72e5ff88;border-radius:5px;background:#07111bd9;color:#dff8ff;font-size:10px;letter-spacing:.04em;text-shadow:0 1px 8px #000}.helmet-data-overlay span:nth-child(odd){justify-self:start}.helmet-data-overlay span:nth-child(even){justify-self:end;text-align:right}
+    .map{position:relative;min-height:560px;background:#07111b url('/ui/dungeon-map-infinity.png') center/cover no-repeat;padding:12px;overflow:hidden}.map:after{content:'∞  无终点循环线';position:absolute;right:12px;bottom:10px;color:#c9d7dc;background:#07111bd9;border:1px solid #597181;border-radius:999px;padding:3px 8px;font-size:10px;letter-spacing:.08em}.map-node{position:absolute;z-index:2;transform:translate(-50%,-50%);width:112px;padding:6px 8px;border-radius:8px;border:1px solid #72e5ff88;background:#0c2133d9;color:#b9d9e8;font-size:10px;cursor:pointer;text-align:left;box-shadow:0 5px 16px #02070eaa}.map-node.active{border-color:var(--cyan);box-shadow:0 0 22px #72e5ff99,0 5px 16px #02070eaa;color:#fff}.map-node.discovered{border-color:var(--good)}.map-node small{display:block;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.map-legend{position:absolute;left:12px;bottom:10px;z-index:3;color:#d9edf6;background:#07111bd9;border:1px solid #38566b;border-radius:7px;padding:6px 8px;font-size:10px}.portrait-bar{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid #6c8ca344;background:#07182777}.portrait-bar img{width:74px;height:74px;object-fit:cover;object-position:50% 20%;border-radius:10px;border:1px solid #72e5ff66;box-shadow:0 0 20px #72e5ff22}.portrait-name{font-size:15px;color:#fff}.portrait-stance{font-size:12px;color:var(--muted);margin-top:3px}.scene{flex:1;padding:26px 34px;background:linear-gradient(180deg,rgba(5,20,31,.44),rgba(5,20,31,.82)),url('/ui/station-platform-concept.png') center/cover no-repeat;min-height:460px}.scene h2{margin:0 0 8px;font-size:22px;text-shadow:0 2px 18px #000}.scene .tag{color:var(--cyan);font-size:12px}.scene p{max-width:760px;margin:18px 0;font-size:16px;color:#d2e5ee;text-shadow:0 1px 8px #000}.scene-art{display:none}.event{border-left:3px solid var(--violet);padding:10px 14px;background:#241e3599;color:#e4d9ff}.dialogue{margin-top:12px;padding:9px 12px;border:1px solid #72e5ff55;border-radius:8px;background:#102436b8;color:#ccebf4}.choices{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:14px 16px;border-top:1px solid #6c8ca344}button{padding:10px 12px;text-align:left;color:#d9edf6;background:#12283bbd;border:1px solid #72e5ff55;border-radius:8px;cursor:pointer}button:hover{border-color:var(--cyan);color:#fff}button:disabled{opacity:.4;cursor:not-allowed}.free-action{padding:14px 16px 16px;border-top:1px solid #6c8ca344;background:#0b1827aa}.free-action label{display:block;color:var(--amber);font-weight:650;margin-bottom:7px}.free-action textarea{width:100%;resize:vertical;min-height:64px;padding:9px 10px;border-radius:8px;border:1px solid #72e5ff55;background:#091521d9;color:#e7f5f8;font:inherit;line-height:1.45}.free-action textarea:focus{outline:2px solid var(--cyan);outline-offset:1px}.free-action-footer{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}.free-action-footer small{color:var(--muted)}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #6c8ca344}.row:last-child{border-bottom:0}.list{display:grid;gap:8px}.clue{color:#d8e9ef}.clue:before{content:'◇';color:var(--amber);margin-right:7px}.notice{margin:12px 16px 0;padding:9px 11px;border:1px solid #72e5ff55;border-radius:8px;background:#102436b8;color:#ccebf4}.catalog{margin:10px 16px 0;padding:12px 14px;border:1px solid #38566b;border-radius:8px;background:#0d2031b8}.catalog-title{color:var(--amber);font-weight:650;margin-bottom:8px}.catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 16px}.catalog-item{color:var(--muted);font-size:12px}.catalog-item span{color:#d9edf6}.facts{max-height:170px;overflow:auto}.facts div{padding:4px 0;border-bottom:1px solid #6c8ca344}.role-picker{display:flex;gap:8px;align-items:center;justify-content:flex-end}.role-picker select{background:#0b1d2dcc;color:#d9edf6;border:1px solid #72e5ff55;border-radius:6px;padding:5px}.ending{border:1px solid var(--amber);padding:12px;border-radius:8px;color:#ffe0a8;background:#332614cc}.empty{padding:20px;color:var(--muted);text-align:center}.helmet-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.readout{padding:8px;border:1px solid #72e5ff44;border-radius:7px;background:#0b1a29b8}.readout-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.readout-value{color:#eaf8ff;font-size:15px;margin-top:2px}.meter{height:5px;border-radius:99px;background:#1e3446;overflow:hidden;margin-top:5px}.meter span{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--amber));border-radius:99px}.status-good{color:var(--good)}.status-warn{color:var(--amber)}.status-danger{color:var(--danger)}
+    button:focus-visible,.map-node:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    @media(max-width:1020px){.grid{grid-template-columns:1fr;grid-template-rows:auto}.narrative,.action-deck,.stack{grid-column:1;grid-row:auto}.scene{min-height:420px}.stack{display:grid}}
+    @media(max-width:620px){.shell{padding:14px}.grid{gap:12px}.role-picker{flex-wrap:wrap}.hud-icon span{display:none}.hud-icon{min-width:38px;padding:7px}.choices{grid-template-columns:1fr}.scene{padding:20px 18px}.portrait-bar{padding:10px 14px}.portrait-bar img{width:60px;height:60px}}
+  </style>
+  <style>
+    .system-progress{margin-top:16px;border:1px solid #72e5ff55;border-radius:9px;background:linear-gradient(135deg,rgba(7,23,36,.92),rgba(10,20,34,.78));box-shadow:0 8px 28px #02070e66;overflow:hidden}.system-progress-header{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #72e5ff33;color:var(--cyan);font-size:11px;letter-spacing:.08em;text-transform:uppercase}.system-progress-source{color:var(--muted);font-size:10px;text-transform:none;letter-spacing:0}.system-line{display:grid;grid-template-columns:72px 1fr;gap:10px;padding:8px 12px;border-bottom:1px solid #6c8ca322;font-size:12px;line-height:1.45}.system-line:last-child{border-bottom:0}.system-line-label{color:var(--amber);font-weight:650}.system-line[data-kind="warn"] .system-line-label{color:var(--danger)}.system-line[data-kind="readout"] .system-line-label{color:var(--cyan)}.system-line-text{color:#d9edf6}
+    .story-unlock{margin-top:18px;padding:18px 20px;border:1px solid #d5a85e88;border-radius:10px;background:linear-gradient(145deg,rgba(31,29,25,.94),rgba(10,22,32,.9));box-shadow:0 12px 34px #02070e88;animation:story-unlock-in 220ms ease-out both}.story-unlock-eyebrow{color:var(--amber);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.story-unlock-header{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-top:5px}.story-unlock-header h3{margin:0;color:#fff1cf;font-size:21px}.story-source{color:#a9dbea;font-size:11px;white-space:nowrap}.story-source-rejected{color:var(--danger)}.story-actor{margin-top:6px;color:#aebfc7;font-size:12px}.story-segment{margin-top:16px;color:#e8eff1;font-size:16px;line-height:1.9}.story-segment p{max-width:780px;margin:0 0 12px}.story-segment p:last-child{margin-bottom:0}.runtime-audit{margin-top:16px;border-top:1px solid #d5a85e33;padding-top:10px}.runtime-audit summary{color:#9eb6c1;font-size:12px;cursor:pointer}.runtime-audit .system-line{margin:7px -2px 0;padding:7px 2px}.runtime-audit .system-line-text{color:#b8cbd2}@keyframes story-unlock-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@media(prefers-reduced-motion:reduce){.story-unlock{animation:none}}
+    /* The drawer is a command visor, not a column of cards: data brackets the live view just like the supplied helmet reference. */
+    .drawer-helmet{background:#02080beF;color:#b9fbd8}.drawer-helmet .panel-title{position:sticky;top:0;z-index:4;border-color:#3abe8b66;background:#06120feF;color:#8df6bd;letter-spacing:.1em}.drawer-helmet .panel-body{padding:0}.helmet-command{position:relative;display:grid;grid-template-columns:minmax(260px,23vw) minmax(420px,1fr) minmax(260px,23vw);grid-template-rows:1fr auto;min-height:calc(100vh - 53px);gap:18px;padding:24px;background:radial-gradient(ellipse at center,rgba(23,82,64,.16),transparent 56%),linear-gradient(180deg,#06110f 0%,#020807 100%)}.hud-viewport{position:relative;grid-column:2;grid-row:1;min-height:620px;border:1px solid #57e5a378;clip-path:polygon(4% 0,96% 0,100% 4%,100% 96%,96% 100%,4% 100%,0 96%,0 4%);background:#04090b;overflow:hidden;box-shadow:inset 0 0 80px #000,0 0 46px #0d8f6430}.hud-viewport:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.48),transparent 18%,transparent 82%,rgba(0,0,0,.48)),linear-gradient(180deg,rgba(3,22,16,.28),transparent 34%,rgba(0,0,0,.45));pointer-events:none}.hud-viewport img{width:100%;height:100%;min-height:620px;object-fit:cover;filter:saturate(.68) contrast(1.15) brightness(.82)}.hud-compass{position:absolute;z-index:1;top:20px;left:15%;right:15%;padding:11px;border-top:1px solid #65f0b283;border-bottom:1px solid #65f0b283;background:#051711a8;color:#a8ffd0;text-align:center;font:600 14px/1 "Consolas","Microsoft YaHei",monospace;letter-spacing:.28em}.hud-mission{position:absolute;z-index:1;top:86px;left:20%;right:20%;padding:10px;border:1px solid #4cdb9c66;background:#041711a8;color:#84dcb0;text-align:center;font-size:11px;letter-spacing:.16em}.hud-mission strong,.hud-mission small{display:block;margin-top:5px;color:#d3ffdf;font-size:14px;letter-spacing:0}.hud-mission small{font-size:11px;color:#6bdca0}.hud-column{position:relative;z-index:2;display:flex;flex-direction:column;gap:14px}.hud-left{grid-column:1;grid-row:1}.hud-right{grid-column:3;grid-row:1}.hud-card{border:1px solid #4bcb8a61;clip-path:polygon(0 8px,8px 0,calc(100% - 8px) 0,100% 8px,100% calc(100% - 8px),calc(100% - 8px) 100%,8px 100%,0 calc(100% - 8px));padding:13px 15px;background:linear-gradient(130deg,rgba(5,30,24,.9),rgba(2,14,13,.82));box-shadow:inset 0 0 24px #0d806016}.hud-card h3{margin:0 0 11px;color:#78f2ad;font-size:13px;font-weight:600;letter-spacing:.12em}.hud-card p{margin:9px 0 0;color:#b5dec8;font-size:12px;line-height:1.55}.hud-card .row{padding:6px 0;border-color:#4bcb8a28;font-size:12px}.hud-card .row .muted{color:#72b99a}.hud-card .chip{border-color:#5be2a488;color:#a7ffd0;background:#0e4931a8}.hud-metric{margin:10px 0}.hud-metric>div{display:flex;justify-content:space-between;color:#9bdabc;font-size:12px}.hud-metric strong{color:#b5ffd4;font:600 19px/1 "Consolas",monospace}.hud-metric i{display:block;height:7px;margin-top:5px;background:#103a2e;border:1px solid #2c806060;overflow:hidden}.hud-metric b{display:block;height:100%;background:linear-gradient(90deg,#23a66f,#8bff99);box-shadow:0 0 10px #80ff9d}.hud-condition{color:#81ecaa}.hud-condition.warn{color:#ffd16c}.hud-condition.danger{color:#ff7d76}.hud-region{margin-top:auto}.hud-route{display:flex;align-items:center;gap:4px;min-height:36px;overflow:hidden}.hud-route span{position:relative;flex:1;min-width:38px;border:1px solid #2d936e66;padding:5px 2px;background:#062118;color:#6edba0;text-align:center;font:11px "Consolas",monospace}.hud-route span:not(:last-child):after{content:'›';position:absolute;right:-7px;top:3px;z-index:1;color:#9dffd0;font-size:18px}.hud-route .active{background:#26bd76;color:#012417;box-shadow:0 0 16px #55f2a7}.hud-warning{border-color:#c9953a80;background:linear-gradient(130deg,rgba(47,32,7,.82),rgba(20,15,5,.86))}.hud-warning h3{color:#ffca5b}.hud-warning p{color:#e8bd71}.hud-comms{color:#77ecaa!important;font-family:"Consolas",monospace}.hud-bottom{grid-column:1 / -1;grid-row:2;display:grid;grid-template-columns:1fr minmax(190px,260px) 1fr;gap:18px;align-items:stretch}.hud-compact{min-height:110px}.hud-speed{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:130px;border:1px solid #55e5a477;border-radius:50% 50% 18px 18px;background:radial-gradient(circle,rgba(26,111,74,.44),rgba(2,18,14,.88) 64%);color:#7eeeb0;text-align:center;font-size:11px;letter-spacing:.12em}.hud-speed strong{margin:6px 0;color:#b7ffd0;font:600 34px/1 "Consolas",monospace;letter-spacing:0}.hud-speed small{color:#66bd91}.drawer-helmet .meter,.drawer-helmet .helmet-grid,.drawer-helmet .helmet-sim{display:none}@media(max-width:980px){.helmet-command{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto}.hud-viewport{grid-column:1 / -1;grid-row:1;min-height:460px}.hud-viewport img{min-height:460px}.hud-left{grid-column:1;grid-row:2}.hud-right{grid-column:2;grid-row:2}.hud-bottom{grid-column:1 / -1;grid-row:3}}@media(max-width:650px){.helmet-command{display:block;padding:12px}.hud-viewport{min-height:360px;margin-bottom:12px}.hud-viewport img{min-height:360px}.hud-column{gap:10px}.hud-left,.hud-right{margin-bottom:10px}.hud-bottom{grid-template-columns:1fr;gap:10px}.hud-compass{left:8%;right:8%;font-size:11px;letter-spacing:.12em}.hud-mission{left:10%;right:10%}}
+  </style>
+  <style>
+    /* Full-visor composition: live data floats over the first-person world view. */
+    @media(min-width:981px){
+      .drawer-helmet .panel-title{height:0;min-height:0;padding:0;border:0;overflow:visible;color:transparent;background:transparent}.drawer-helmet .panel-title .drawer-close{position:fixed;top:8px;right:18px;z-index:8;color:#b9fbd8;background:#04110e}
+      .helmet-command{height:100vh;min-height:700px;grid-template-columns:minmax(250px,25%) minmax(280px,1fr) minmax(250px,25%);grid-template-rows:minmax(0,1fr) 112px;gap:16px;padding:18px;background:#020707;overflow:hidden}
+      .hud-viewport{grid-column:1 / -1;grid-row:1;min-height:0}.hud-viewport img{min-height:0;filter:saturate(.78) contrast(1.12) brightness(.76)}
+      .hud-left,.hud-right{grid-row:1;align-self:stretch;padding:42px 0 18px;pointer-events:none}.hud-left{grid-column:1;margin-left:8px}.hud-right{grid-column:3;margin-right:8px}
+      .hud-card{pointer-events:auto;background:linear-gradient(130deg,rgba(1,23,22,.76),rgba(1,13,15,.68));backdrop-filter:blur(3px);border-color:#58e5b077}.hud-region{margin-top:auto}
+      .hud-bottom{grid-row:2;grid-column:1 / -1;z-index:3;grid-template-columns:minmax(250px,25%) minmax(210px,1fr) minmax(250px,25%);gap:16px}.hud-compact{min-height:98px}
+      .hud-speed{min-height:106px;background:radial-gradient(circle,rgba(16,91,75,.62),rgba(2,14,17,.78) 61%,transparent 62%);border-radius:50% 50% 8px 8px}.hud-mission{top:72px;background:#0212129e}.hud-compass{top:18px;background:#02121278}
+    }
+    .hud-ident{position:absolute;z-index:2;top:18px;left:20px;color:#78f2ad;font:11px/1.45 "Consolas","Microsoft YaHei",monospace;letter-spacing:.09em;text-shadow:0 1px 4px #000}.hud-ident span{display:block;color:#589b83;font-size:9px}
+    .hud-map-surface{position:relative;margin:-4px -4px 8px;height:116px;overflow:hidden;border:1px solid #45c8914a;background:#061310}.hud-map-surface img{width:100%;height:100%;min-height:0;object-fit:cover;opacity:.42;filter:hue-rotate(90deg) saturate(.8);mix-blend-mode:screen}.hud-map-marker{position:absolute;left:var(--x);top:var(--y);width:10px;height:10px;border-radius:50%;background:#a3ffd0;box-shadow:0 0 0 4px #1ef3a255,0 0 15px #a3ffd0;transform:translate(-50%,-50%)}.hud-map-caption{position:absolute;bottom:7px;left:8px;color:#b5ffd4;font:10px "Consolas",monospace;letter-spacing:.06em}
+  </style>
+  <style>
+    .action-mode-bar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 16px;border-bottom:1px solid #6c8ca344;background:linear-gradient(90deg,rgba(6,20,32,.92),rgba(12,31,45,.66))}.action-mode-switch{display:inline-grid;grid-template-columns:repeat(2,minmax(128px,1fr));gap:4px;padding:4px;border:1px solid #416078aa;border-radius:10px;background:#06131f}.action-mode-switch button{position:relative;padding:8px 14px;border-color:transparent;background:transparent;color:var(--muted);text-align:center;font-weight:650}.action-mode-switch button[aria-pressed="true"]{border-color:#72e5ff88;background:linear-gradient(135deg,#12354b,#0d273a);color:#e7faff;box-shadow:0 0 18px #72e5ff20}.action-mode-switch button[aria-pressed="true"]:after{content:'';position:absolute;left:18px;right:18px;bottom:-5px;height:2px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}.dialogue-target{display:flex;align-items:center;gap:8px;color:var(--muted)}.dialogue-target select{min-width:132px;padding:8px 10px;border:1px solid #72e5ff55;border-radius:8px;background:#091a29;color:#e7f5f8;font:inherit}.dialogue-target[hidden],.choices[hidden]{display:none}.action-deck[data-mode="dialogue"] .free-action{border-top-color:#72e5ff66;background:linear-gradient(100deg,rgba(8,30,43,.94),rgba(11,24,39,.88))}.action-deck[data-mode="dialogue"] .free-action label{color:var(--cyan)}.input-error{margin:9px 0 0;padding:8px 10px;border-left:3px solid var(--danger);border-radius:5px;background:#35171bb8;color:#ffb8b3;font-size:12px}.input-error[hidden]{display:none}.dialogue-exchange{display:grid;gap:10px;padding:14px 16px}.dialogue-line{margin:0!important;padding:10px 12px;border-radius:7px;font-size:14px!important;line-height:1.65}.dialogue-line.user{margin-left:8%!important;border:1px solid #d5a85e55;background:#30271699;color:#ffe4b1}.dialogue-line.reply{margin-right:8%!important;border-left:3px solid var(--cyan);background:#0b2436;color:#ddf6ff}.dialogue-speaker{display:block;margin-bottom:3px;color:var(--cyan);font-size:11px;letter-spacing:.08em}.dialogue-source{color:var(--muted);font-size:10px;white-space:nowrap}@media(max-width:620px){.action-mode-bar{align-items:stretch;flex-direction:column}.action-mode-switch{width:100%;grid-template-columns:1fr 1fr}.dialogue-target{justify-content:space-between}.dialogue-target select{flex:1}.dialogue-line.user{margin-left:0!important}.dialogue-line.reply{margin-right:0!important}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <header><div><div class="eyebrow">DEEPSEEK HARNESS · FEITU WORLD</div><h1>废土世界 <span class="muted">/ 消失的一号线末班车</span></h1></div><div class="meta"><div class="role-picker"><label for="role">角色</label><select id="role"><option value="zhunin">祝宁</option><option value="linenchuan">李念川</option></select><button id="worldView">世界枢纽</button><button id="start">开始副本</button></div><div class="hud-tools" aria-label="快速查看面板"><button id="mapToggle" class="hud-icon" type="button" aria-controls="mapDrawer" aria-expanded="false" title="打开无穷轨道地图">∞<span>地图</span></button><button id="helmetToggle" class="hud-icon" type="button" aria-controls="helmetDrawer" aria-expanded="false" title="打开第一视角头盔面板">◉<span>头盔</span></button></div><div id="metaLine">DSH 玩家验收预览 · 尚未开始</div></div></header>
+  <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
+  <div id="worldCatalog" class="catalog" role="region" aria-live="polite" aria-label="世界枢纽目录" hidden></div>
+  <section class="grid">
+    <aside id="mapDrawer" class="panel drawer drawer-map" aria-label="无终点列车循环地图" hidden><div class="panel-title">副本地图 · ∞ 无终点循环线 <button class="drawer-close" type="button" data-close="mapDrawer">关闭</button></div><div id="map" class="map" role="list" aria-label="无终点列车循环地图"><div class="map-legend">蓝色：当前位置　绿色：已调查　列车首尾相接，永不抵达终点</div><div class="empty">请选择角色开始副本</div></div></aside>
+    <section class="panel narrative"><div class="panel-title">现场叙事 · 玩家视角</div><div id="portraitBar" class="portrait-bar" aria-label="当前角色半身像"><img id="portrait" src="/ui/portrait-zhunin.png" alt="祝宁半身像" /><div><div id="portraitName" class="portrait-name">祝宁</div><div id="portraitStance" class="portrait-stance">选择角色后，半身像会固定在对话框上方。</div></div></div><div id="scene" class="scene" role="region" aria-live="polite" aria-label="现场叙事"><div class="empty">DSH 插件已加载。点击“开始副本”进入确定性状态机。</div></div></section>
+    <section id="actionDeck" class="panel action-deck" data-mode="action"><div id="actionDeckTitle" class="panel-title">现场输入 · 选择行动或与角色对话</div><div class="action-mode-bar"><div class="action-mode-switch" role="group" aria-label="输入方式"><button id="actionModeChoice" type="button" aria-pressed="true">选择行动</button><button id="dialogueModeChoice" type="button" aria-pressed="false">与角色对话</button></div><label id="dialogueTargetWrap" class="dialogue-target" for="dialogueTarget" hidden>对话对象<select id="dialogueTarget" aria-label="选择对话角色"></select></label></div><div id="choices" class="choices" role="group" aria-label="可选行动"></div><form id="freeActionForm" class="free-action"><label id="freeActionLabel" for="freeAction">自由行动 · 以祝宁身份行动</label><textarea id="freeAction" maxlength="280" rows="2" placeholder="例如：我先检查车厢连接处，确认鱼头人是否在每站上车"></textarea><div id="inputError" class="input-error" role="alert" hidden></div><div class="free-action-footer"><small id="freeActionHint">DeepSeek 将推进剧情，并通过运行时改变可见头盔读数。</small><button id="freeActionSubmit" type="submit">执行行动</button></div></form></section>
+    <aside class="stack"><section class="panel"><div class="panel-title">角色状态</div><div id="rolePanel" class="panel-body empty">未选择角色</div></section><section class="panel"><div class="panel-title">已确认线索</div><div id="clues" class="panel-body list"><div class="muted">检查地点后显示冻结线索</div></div></section><section class="panel"><div class="panel-title">背包</div><div id="inventory" class="panel-body list"></div></section><section class="panel"><div class="panel-title">事实台账</div><div id="facts" class="panel-body facts"></div></section></aside>
+  </section>
+  <aside id="helmetDrawer" class="panel drawer drawer-helmet" aria-label="第一视角头盔面板" hidden><div class="panel-title">第一视角头盔面板 <button class="drawer-close" type="button" data-close="helmetDrawer">关闭</button></div><div id="pressurePanel" class="panel-body empty">未开始</div></aside>
+</main>
+<style>
+  .opening-recap{margin:20px 0;border-top:1px solid #6c8ca344;padding-top:16px}
+  .opening-recap summary{cursor:pointer;color:var(--amber);font-size:16px;font-weight:650}
+  .opening-excerpt{margin:0}
+  .scene .opening-source{font-size:12px;color:var(--muted);margin:10px 0}
+</style>
+<script>
+  const $ = (id) => document.getElementById(id);
+  const roleMeta = {
+    zhunin: { name: '祝宁', portrait: '/ui/portrait-zhunin.png', stance: '谨慎、先验证后行动；留意李念川的身体状况，保持同行。' },
+    linenchuan: { name: '李念川', portrait: '/ui/portrait-linianchuan.png', stance: '年轻、反应快，容易把污染不适误判为闷热；倾向先跟随现场判断。' },
+  };
+  let selectedDungeonId = 'one-line-last-train';
+  let latestView = null;
+  let inputMode = 'action';
+  function appendOpening(scene, opening, expanded) {
+    if (!opening) return;
+    const recap = document.createElement('details'); recap.className = 'opening-recap'; recap.open = expanded;
+    const title = document.createElement('summary'); title.textContent = opening.title; recap.appendChild(title);
+    if (opening.source) { const source = document.createElement('p'); source.className = 'opening-source'; source.textContent = `《${opening.source.title}》 · ${opening.source.chapter}`; recap.appendChild(source); }
+    const excerpt = document.createElement(opening.source ? 'blockquote' : 'div'); excerpt.className = 'opening-excerpt';
+    opening.paragraphs.forEach((text) => { const paragraph = document.createElement('p'); paragraph.textContent = text; excerpt.appendChild(paragraph); });
+    recap.appendChild(excerpt);
+    scene.appendChild(recap);
+  }
+  function updateDialogueTargets(roleId) {
+    const select = $('dialogueTarget');
+    const previous = select.value;
+    const fallback = roleId === 'linenchuan'
+      ? [{ id: 'zhunin', name: '祝宁' }, { id: 'xumeng', name: '徐萌' }]
+      : [{ id: 'linenchuan', name: '李念川' }, { id: 'xumeng', name: '徐萌' }];
+    const targets = latestView?.dialogueTargets?.length ? latestView.dialogueTargets : fallback;
+    select.replaceChildren();
+    targets.forEach((target) => { const option = document.createElement('option'); option.value = target.id; option.textContent = target.name; select.appendChild(option); });
+    if ([...select.options].some((option) => option.value === previous)) select.value = previous;
+  }
+  function setInputMode(mode) {
+    inputMode = mode === 'dialogue' ? 'dialogue' : 'action';
+    const dialogue = inputMode === 'dialogue';
+    $('actionDeck').dataset.mode = inputMode;
+    $('actionModeChoice').setAttribute('aria-pressed', String(!dialogue));
+    $('dialogueModeChoice').setAttribute('aria-pressed', String(dialogue));
+    $('dialogueTargetWrap').hidden = !dialogue;
+    $('choices').hidden = dialogue;
+    const role = latestView?.role || roleMeta[$('role').value] || roleMeta.zhunin;
+    if (dialogue) {
+      updateDialogueTargets(role.id || $('role').value);
+      const targetName = $('dialogueTarget').selectedOptions[0]?.textContent || '角色';
+      $('freeActionLabel').textContent = `以${role.name}身份询问${targetName}`;
+      $('freeAction').placeholder = '例如：你现在感觉怎么样';
+      $('freeActionHint').textContent = `${targetName}会依据当前剧情和人物设定回复，不会替你行动。`;
+      $('freeActionSubmit').textContent = '发送对话';
+    } else {
+      $('freeActionLabel').textContent = `自由行动 · 以${role.name}身份行动`;
+      $('freeAction').placeholder = '例如：我留在同伴身旁，查看他的状态';
+      $('freeActionHint').textContent = latestView?.dsh?.message || '选择与输入都会走同一事件导演与状态写入链路。';
+      $('freeActionSubmit').textContent = '执行行动';
+    }
+    const ended = Boolean(latestView?.ending);
+    for (const id of ['freeAction', 'freeActionSubmit', 'dialogueTarget']) $(id).disabled = ended;
+    if (ended) $('freeActionHint').textContent = '本局已结束。可以保存、恢复检查点，或开始新局。';
+  }
+  function clearInputError() { const error = $('inputError'); error.hidden = true; error.textContent = ''; }
+  async function call(action) {
+    clearInputError();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20_000);
+    try {
+      const response = await fetch('/api/game', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(action), signal: controller.signal });
+      const data = await response.json();
+      if (!response.ok || data.error) throw new Error(data.error || '请求失败');
+      render(data);
+      return data;
+    } catch (error) {
+      if (error?.name === 'AbortError') throw new Error('请求超过 20 秒仍未返回，请检查在线模型连接后重试。');
+      throw error;
+    } finally { clearTimeout(timeout); }
+  }
+  async function refresh() { const response = await fetch('/api/game'); render(await response.json()); }
+  function button(label, action) { const el = document.createElement('button'); el.type = 'button'; el.textContent = label; el.onclick = () => call(action).catch(showError); return el; }
+  function actionId() { return globalThis.crypto?.randomUUID?.() || `browser-${Date.now()}-${Math.random().toString(36).slice(2)}`; }
+  function isNarrativeAction(action) { return ['move', 'inspect', 'talk', 'take', 'use', 'submit_choice', 'resolve_interactive_event'].includes(action); }
+  function assertGameplayOpen() { if (latestView?.ending) throw new Error('本局已结束，请开始新局或恢复检查点。'); }
+  async function submitNarrativeAction(action, label) {
+    assertGameplayOpen();
+    $('freeActionSubmit').disabled = true;
+    $('freeActionHint').textContent = '正在通过 DeepSeek Harness 生成后续剧情并校验现场因果…';
+    try {
+      return await call({ action: 'free_action', action_text: label, selected_action: action, client_action_id: actionId(), expected_turn: latestView?.turn, run_id: latestView?.run_id });
+    } finally {
+      $('freeActionSubmit').disabled = false;
+      setInputMode(inputMode);
+    }
+  }
+  async function submitCharacterDialogue(text) {
+    assertGameplayOpen();
+    $('freeActionSubmit').disabled = true;
+    const targetName = $('dialogueTarget').selectedOptions[0]?.textContent || '角色';
+    $('freeActionHint').textContent = `正在连接${targetName}并校验人物设定…`;
+    try {
+      return await call({ action: 'character_dialogue', dialogue_text: text, target_id: $('dialogueTarget').value, client_action_id: actionId(), expected_turn: latestView?.turn, run_id: latestView?.run_id });
+    } finally {
+      $('freeActionSubmit').disabled = false;
+      setInputMode(inputMode);
+    }
+  }
+  function actionButton(item) {
+    if (!isNarrativeAction(item.action)) return button(item.label, item);
+    const el = document.createElement('button');
+    el.type = 'button'; el.textContent = item.label;
+    el.disabled = Boolean(latestView?.ending);
+    el.onclick = () => submitNarrativeAction(item, item.label).catch(showError);
+    return el;
+  }
+  function row(label, value, chip = false) { const el = document.createElement('div'); el.className = 'row'; const left = document.createElement('span'); left.className = 'muted'; left.textContent = label; const right = document.createElement('span'); if (chip) right.className = 'chip'; right.textContent = value; el.append(left, right); return el; }
+  function showError(error) {
+    $('freeActionSubmit').disabled = false;
+    setInputMode(inputMode);
+    const message = error?.message || '请求失败';
+    $('notice').hidden = false; $('notice').setAttribute('role', 'alert'); $('notice').textContent = '工具拒绝了这次行动：' + message;
+    const inputError = $('inputError'); inputError.hidden = false; inputError.textContent = `${inputMode === 'dialogue' ? '对话发送失败' : '行动提交失败'}：${message}`;
+  }
+  function updateRolePreview(roleId) {
+    const role = roleMeta[roleId] || roleMeta.zhunin;
+    $('portrait').src = role.portrait; $('portrait').alt = `${role.name}半身像`; $('portraitName').textContent = role.name; $('portraitStance').textContent = role.stance;
+  }
+  function setDrawer(id, open) {
+    const drawer = $(id); if (!drawer) return; drawer.hidden = !open;
+    const toggle = id === 'mapDrawer' ? $('mapToggle') : $('helmetToggle'); if (toggle) toggle.setAttribute('aria-expanded', String(open));
+    if (open) drawer.querySelector('.drawer-close')?.focus();
+  }
+  function toggleDrawer(id) { setDrawer(id, $(id).hidden); }
+  function meter(label, value, max, suffix = '') {
+    const el = document.createElement('div'); el.className = 'readout'; const name = document.createElement('div'); name.className = 'readout-label'; name.textContent = label; const amount = document.createElement('div'); amount.className = 'readout-value'; amount.textContent = `${value}${suffix}`; const track = document.createElement('div'); track.className = 'meter'; const fill = document.createElement('span'); fill.style.width = `${Math.max(0, Math.min(100, (Number(value) / Number(max)) * 100))}%`; track.appendChild(fill); el.append(name, amount, track); return el;
+  }
+  function render(view) {
+    latestView = view;
+    if (!view || view.started === false) {
+      $('metaLine').textContent = 'DSH 玩家验收预览 · 尚未开始';
+      $('scene').replaceChildren();
+      appendOpening($('scene'), view?.opening, true);
+      $('choices').innerHTML = '';
+      (view?.saves || []).forEach(runId => $('choices').appendChild(button(`恢复存档：${runId}`, {action:'resume', run_id:runId})));
+      updateRolePreview($('role').value);
+      updateDialogueTargets($('role').value);
+      setInputMode(inputMode);
+      return;
+    }
+    $('notice').hidden = !view.notice; $('notice').removeAttribute('role'); $('notice').textContent = view.notice || '';
+    $('role').value = view.role.id;
+    updateRolePreview(view.role.id);
+    updateDialogueTargets(view.role.id);
+    setInputMode(inputMode);
+    const metaLine = $('metaLine'); metaLine.textContent = `回合 ${view.turn} · ${view.role.name} · `; const nodeChip = document.createElement('span'); nodeChip.className = 'chip'; nodeChip.textContent = view.currentNode.id; metaLine.append(nodeChip, ` · run ${view.run_id}`);
+    const map = $('map'); map.replaceChildren(); const legend = document.createElement('div'); legend.className = 'map-legend'; legend.textContent = '蓝色：当前位置　绿色：已调查　列车首尾相接，永不抵达终点'; map.appendChild(legend);
+    view.map.forEach(location => { const point = location.point || {x:50,y:50}; const node = document.createElement('button'); node.type = 'button'; node.disabled = Boolean(view.ending); node.className = `map-node ${location.current ? 'active' : ''} ${location.discovered ? 'discovered' : ''}`; node.style.left = `${point.x}%`; node.style.top = `${point.y}%`; node.setAttribute('aria-label', `${location.id} ${location.name}${location.current ? '，当前位置' : ''}`); if (location.current) node.setAttribute('aria-current', 'location'); node.textContent = location.id; const small = document.createElement('small'); small.textContent = location.name; node.appendChild(small); node.onclick = () => location.current ? submitNarrativeAction({ action: 'inspect', target: location.id }, '检查当前区域').catch(showError) : showError(new Error('请从当前地点沿已知出口行动；列车循环但不会瞬移')); map.appendChild(node); });
+    const location = view.location; const scene = $('scene'); scene.replaceChildren();
+    const tag = document.createElement('div'); tag.className = 'tag'; tag.textContent = `${location.id} · 剧情节点 ${view.currentNode.id}`;
+    const heading = document.createElement('h2'); heading.textContent = location.name;
+    const paragraph = document.createElement('p');
+    const freeEvent = view.freeActionEvent;
+    const locationDescription = {
+      L001: '下行绳索悬在井口，地面的照明沿井壁落下。',
+      L002: '头灯照亮地下作业区，来路在身后延伸。',
+      L003: '潮湿的通道边留着一处落脚的位置。头灯照着近处的墙面，更深处传来水声。',
+    };
+    paragraph.textContent = locationDescription[location.id] || '当前区域信息已登记。请通过检查、移动或自由行动推进现场。';
+    scene.append(tag, heading, paragraph);
+    appendOpening(scene, view.opening, view.turn === 0);
+    if (freeEvent?.source === 'deepseek' && freeEvent.status !== 'REJECTED') {
+      const unlock = document.createElement('article'); unlock.className = 'story-unlock'; unlock.id = `story-unlock-${freeEvent.id}`; unlock.setAttribute('aria-label', '剧情已解锁');
+      const eyebrow = document.createElement('div'); eyebrow.className = 'story-unlock-eyebrow'; eyebrow.textContent = freeEvent.unlockLabel || `第${freeEvent.turn ?? view.turn}回合 · 新剧情`;
+      const header = document.createElement('div'); header.className = 'story-unlock-header';
+      const title = document.createElement('h3'); title.textContent = freeEvent.title;
+      const source = document.createElement('span'); source.className = 'story-source'; source.textContent = '在线事件导演';
+      header.append(title, source);
+      const actor = document.createElement('div'); actor.className = 'story-actor'; actor.textContent = `以${freeEvent.actor?.name || view.role.name}的行动推进 · ${freeEvent.accepted ? '已提交' : '行动受阻'}`;
+      const body = document.createElement('div'); body.className = 'story-segment'; body.setAttribute('aria-live', 'polite');
+      String(freeEvent.storySegment || freeEvent.text || '').split(/\n{2,}/).filter(Boolean).forEach((part) => { const paragraph = document.createElement('p'); paragraph.textContent = part; body.appendChild(paragraph); });
+      const audit = document.createElement('details'); audit.className = 'runtime-audit'; const summary = document.createElement('summary'); summary.textContent = '运行时判定与头盔回执'; audit.appendChild(summary);
+      const systemLines = freeEvent.systemLines || [{ kind: freeEvent.accepted ? 'change' : 'warn', label: '事态变化', text: freeEvent.text }];
+      systemLines.forEach((item) => { const line = document.createElement('div'); line.className = 'system-line'; line.dataset.kind = item.kind || 'change'; const label = document.createElement('span'); label.className = 'system-line-label'; label.textContent = item.label; const text = document.createElement('span'); text.className = 'system-line-text'; text.textContent = item.text; line.append(label, text); audit.appendChild(line); });
+      unlock.append(eyebrow, header, actor, body, audit); scene.appendChild(unlock);
+      if (freeEvent.turn === view.turn) requestAnimationFrame(() => unlock.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }));
+    }
+    const dialogue = view.visibleDialogue?.at(-1); if (dialogue) {
+      const box = document.createElement('article'); box.className = dialogue.userText ? 'dialogue dialogue-exchange' : 'dialogue';
+      if (dialogue.userText) {
+        const userLine = document.createElement('p'); userLine.className = 'dialogue-line user'; const userName = document.createElement('span'); userName.className = 'dialogue-speaker'; userName.textContent = `${dialogue.actorName || view.role.name} → ${dialogue.speaker}`; userLine.append(userName, document.createTextNode(dialogue.userText));
+        const replyLine = document.createElement('p'); replyLine.className = 'dialogue-line reply'; const speaker = document.createElement('span'); speaker.className = 'dialogue-speaker'; speaker.textContent = dialogue.speaker; const source = document.createElement('span'); source.className = 'dialogue-source'; source.textContent = dialogue.source === 'deepseek' ? ' · 角色模型回复' : ' · 本地角色规则回复'; speaker.appendChild(source); replyLine.append(speaker, document.createTextNode(dialogue.text)); box.append(userLine, replyLine);
+      } else box.textContent = `${dialogue.speaker}：${dialogue.text}`;
+      scene.appendChild(box);
+      if (dialogue.userText && dialogue.turn === view.turn) requestAnimationFrame(() => box.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'center' }));
+    }
+    if (view.ending) { const end = document.createElement('div'); end.className = 'ending'; end.textContent = `已提交终局：${view.ending.id}`; scene.appendChild(end); }
+    const choices = $('choices'); choices.innerHTML = ''; view.choices.forEach(item => choices.appendChild(actionButton({ action: item.action, target: item.target, target_id: item.target_id, item_id: item.item_id, choice_id: item.choice_id, event_id: item.event_id, result_id: item.result_id, label: item.label }))); if (!view.choices.length) choices.appendChild(document.createElement('span')).textContent = view.ending ? '本局已结束。可以保存、恢复检查点，或开始新局。' : '当前节点没有可见选择；可用自由行动继续探索';
+    const rolePanel = $('rolePanel'); rolePanel.replaceChildren(row('立场', view.role.stance), row('能力', view.role.abilities.join(' / ')), row('标记', view.flags.coreExposed ? '核心已定位' : view.discoveredClues.length ? '现场情况待核实' : '休息中', true)); rolePanel.classList.remove('empty');
+    const pressure = view.pressure || {value: 0, max: 100, phase: 'UNKNOWN', countdown: 0, communication: 'UNKNOWN'}; const helmet = view.helmet || {pollution: {value: pressure.value, max: pressure.max, band: pressure.phase, trend:'待采样'}, communication: {status: pressure.communication, signal:0, latencyMs:null}, oxygen:{value:0}, suitIntegrity:{value:0}, temperature:{value:0}, countdown:pressure.countdown};
+    const pressurePanel = $('pressurePanel'); pressurePanel.replaceChildren();
+    const hud = document.createElement('section'); hud.className = 'helmet-command'; hud.setAttribute('aria-label', `${view.role.name}的头盔战术界面`);
+    const hudCard = (title, className = '') => { const card = document.createElement('section'); card.className = `hud-card ${className}`; const heading = document.createElement('h3'); heading.textContent = title; card.appendChild(heading); return card; };
+    const hudMetric = (label, value, max = 100, suffix = '') => { const block = document.createElement('div'); block.className = 'hud-metric'; const line = document.createElement('div'); const name = document.createElement('span'); name.textContent = label; const amount = document.createElement('strong'); amount.textContent = `${value}${suffix}`; line.append(name, amount); const track = document.createElement('i'); const fill = document.createElement('b'); fill.style.width = `${Math.max(0, Math.min(100, Number(value) / Number(max) * 100))}%`; track.appendChild(fill); block.append(line, track); return block; };
+    const viewport = document.createElement('div'); viewport.className = 'hud-viewport'; const image = document.createElement('img'); image.src = '/ui/helmet-industrial-visage-v2.png'; image.alt = `${view.role.name}透过头盔观察${view.location.name}`; image.loading = 'lazy'; viewport.appendChild(image);
+    const ident = document.createElement('div'); ident.className = 'hud-ident'; ident.innerHTML = '清洁队头盔系统 v4.2.1<span>103区清洁中心 · LIVE VISOR</span>'; viewport.appendChild(ident);
+    const compass = document.createElement('div'); compass.className = 'hud-compass'; compass.textContent = `N  ─────  ${view.location.id}  ─────  E`;
+    const mission = document.createElement('div'); mission.className = 'hud-mission'; mission.append(document.createTextNode('当前状况'), document.createElement('strong')); mission.querySelector('strong').textContent = helmet.mission?.title || view.location.name; const missionProgress = document.createElement('small'); missionProgress.textContent = `证据确认进度 ${helmet.mission?.progress ?? 0}%`; mission.appendChild(missionProgress); viewport.append(compass, mission);
+    const left = document.createElement('div'); left.className = 'hud-column hud-left';
+    const vitals = hudCard('生理状态'); const physical = helmet.physiology || {}; vitals.append(hudMetric('心率', physical.heartRate ?? 0, 160, ' BPM'), hudMetric('精神值', physical.mental ?? 0, 100, ' /100'), hudMetric('体力', physical.stamina ?? 0, 100, ' /100')); const condition = document.createElement('p'); condition.className = `hud-condition ${physical.health === '危险' ? 'danger' : physical.health === '警告' || physical.health === '轻度不适' ? 'warn' : ''}`; condition.textContent = `健康状态：${physical.health || '待采样'} · ${physical.injury || 'NONE'}`; vitals.appendChild(condition);
+    const region = hudCard('区域地图 · 当前可见路线', 'hud-region'); const mapSurface = document.createElement('div'); mapSurface.className = 'hud-map-surface'; const mapImage = document.createElement('img'); mapImage.src = '/ui/dungeon-map-infinity.png'; mapImage.alt = ''; const marker = document.createElement('span'); marker.className = 'hud-map-marker'; marker.style.setProperty('--x', `${view.map.find(point => point.current)?.point?.x ?? 50}%`); marker.style.setProperty('--y', `${view.map.find(point => point.current)?.point?.y ?? 50}%`); const mapCaption = document.createElement('span'); mapCaption.className = 'hud-map-caption'; mapCaption.textContent = `${view.location.id} · 当前定位`; mapSurface.append(mapImage, marker, mapCaption); const route = document.createElement('div'); route.className = 'hud-route'; (view.map || []).filter((point) => point.current || point.discovered || point.id === view.location.id).slice(-6).forEach((point) => { const node = document.createElement('span'); node.className = point.current ? 'active' : ''; node.textContent = point.id; route.appendChild(node); }); if (!route.children.length) route.textContent = view.location.id; const locationName = document.createElement('p'); locationName.textContent = view.location.name; region.append(mapSurface, route, locationName);
+    const environment = hudCard('环境警告', 'hud-warning'); [['空气污染指数', helmet.environment?.airIndex], ['辐射指数', helmet.environment?.radiation], ['温度', `${helmet.temperature.value}${helmet.temperature.unit}`], ['湿度', `${helmet.environment?.humidity ?? '—'}%`]].forEach(([label, value]) => environment.appendChild(row(label, String(value)))); const warning = document.createElement('p'); warning.textContent = helmet.environment?.warning || '环境读数待采样'; environment.appendChild(warning); left.append(vitals, region, environment);
+    const right = document.createElement('div'); right.className = 'hud-column hud-right';
+    const equipment = hudCard('装备状态'); [['清理工具', helmet.equipment?.tool || '未切换工具'], ['防护服', `${helmet.equipment?.suitStatus || '完好'} · ${helmet.suitIntegrity.value}%`], ['过滤面罩', `${helmet.equipment?.filterStatus || 'II级过滤'} · ${helmet.equipment?.filterDurability ?? '—'}%`], ['通讯器', `${helmet.equipment?.communicatorStatus || helmet.communication.status} · ${helmet.communication.signal}%`]].forEach(([label, value]) => equipment.appendChild(row(label, value)));
+    const bag = hudCard(`背包状态 · ${view.inventory.length}/20`); view.inventory.forEach((item) => bag.appendChild(row(item.name, item.id, true))); if (!view.inventory.length) bag.appendChild(row('无已登记物品', '—'));
+    const comms = hudCard(`通讯频道 · ${helmet.communication.channel}`); const signal = document.createElement('p'); signal.className = 'hud-comms'; signal.textContent = `${helmet.communication.status} · 信号 ${helmet.communication.signal}%`; comms.appendChild(signal); const latestDialogue = view.visibleDialogue?.at(-1); const message = document.createElement('p'); message.textContent = latestDialogue ? `${latestDialogue.speaker}：${latestDialogue.text}` : '频道静默，等待现场指令。'; comms.appendChild(message); right.append(equipment, bag, comms);
+    const bottom = document.createElement('div'); bottom.className = 'hud-bottom'; const lighting = hudCard('照明模式', 'hud-compact'); lighting.appendChild(row('模式', helmet.pollution.value >= 55 ? '低光夜视' : '强光扫描')); const speed = document.createElement('div'); speed.className = 'hud-speed'; speed.innerHTML = '<span>设备电量</span><strong></strong><small>污染压力</small>'; speed.querySelector('strong').textContent = `${Math.max(18, helmet.suitIntegrity.value - Math.floor(view.turn / 2))}%`; const filter = hudCard('过滤系统', 'hud-compact'); filter.appendChild(row('运行状态', helmet.oxygen.status === 'LOW' ? '负载升高' : '运行中')); filter.appendChild(row('氧气', `${helmet.oxygen.value}%`)); bottom.append(lighting, speed, filter);
+    hud.append(viewport, left, right, bottom); pressurePanel.appendChild(hud); pressurePanel.classList.remove('empty');
+    const clues = $('clues'); clues.replaceChildren(); if (view.discoveredClues.length) view.discoveredClues.forEach(clue => { const item = document.createElement('div'); item.className = 'clue'; item.textContent = clue; clues.appendChild(item); }); else { const empty = document.createElement('div'); empty.className = 'muted'; empty.textContent = '检查地点后显示冻结线索'; clues.appendChild(empty); }
+    const inventory = $('inventory'); inventory.replaceChildren(); view.inventory.forEach(item => inventory.appendChild(row(item.name, item.id, true)));
+    const facts = $('facts'); facts.replaceChildren(); const ledger = view.factLedger || {verified:view.visibleFacts || [], suspected:[]}; ledger.verified.forEach(fact => { const item = document.createElement('div'); item.textContent = `已确认 · ${fact}`; facts.appendChild(item); }); ledger.suspected.forEach(fact => { const item = document.createElement('div'); item.className = 'muted'; item.textContent = `待验证 · ${fact}`; facts.appendChild(item); });
+    const hasAction = (action) => view.choices.some(item => item.action === action);
+    if (!hasAction('inspect')) choices.appendChild(actionButton({ label: '检查当前区域', action: 'inspect', target: view.location.id }));
+    if (!hasAction('talk')) choices.appendChild(actionButton({ label: '联系徐萌，说明当前情况', action: 'talk', target: 'xumeng' }));
+    if (!hasAction('save')) choices.appendChild(button('保存检查点', {action:'save'}));
+    if (view.checkpoint?.available) { choices.appendChild(button('恢复检查点', {action:'load'})); choices.appendChild(button('从当前状态分支', {action:'fork'})); }
+    (view.location.takeableItems || []).forEach(item => choices.appendChild(actionButton({ label: `记录物品：${item.name}`, action: 'take', item_id: item.id })));
+    view.inventory.filter(item => item.id === 'I003' || item.id === 'I004' || item.id === 'I005').forEach(item => choices.appendChild(actionButton({ label: `使用：${item.name}`, action: 'use', item_id: item.id })));
+    setInputMode(inputMode);
+  }
+  $('mapToggle').onclick = () => toggleDrawer('mapDrawer');
+  $('helmetToggle').onclick = () => toggleDrawer('helmetDrawer');
+  $('actionModeChoice').onclick = () => setInputMode('action');
+  $('dialogueModeChoice').onclick = () => setInputMode('dialogue');
+  $('dialogueTarget').onchange = () => setInputMode('dialogue');
+  document.querySelectorAll('[data-close]').forEach((close) => close.addEventListener('click', () => setDrawer(close.dataset.close, false)));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') { setDrawer('mapDrawer', false); setDrawer('helmetDrawer', false); } });
+  $('worldView').onclick = async () => { try { const response = await fetch('/api/game', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({action:'world_view'}) }); const world = await response.json(); const playable = world.dungeons.find(item => item.status === 'PLAYABLE'); if (!playable) throw new Error('世界枢纽当前没有可玩的副本'); selectedDungeonId = playable.id; const announced = world.announcedDungeons || []; $('notice').hidden = false; $('notice').textContent = `世界枢纽：${world.world.name} · ${world.regions.map(item => item.name).join('、')} · 已选择副本：${playable.name} · 已登记未开放 ${announced.length} 个`; const catalog = $('worldCatalog'); catalog.innerHTML = ''; const title = document.createElement('div'); title.className = 'catalog-title'; title.textContent = `来源登记目录 · ${announced.length} 个未开放副本`; catalog.appendChild(title); const grid = document.createElement('div'); grid.className = 'catalog-grid'; announced.forEach(item => { const row = document.createElement('div'); row.className = 'catalog-item'; row.textContent = `${item.chapterRange || '章节待定'} · `; const name = document.createElement('span'); name.textContent = `${item.name} · ${item.taskType || '类型待定'}`; row.appendChild(name); grid.appendChild(row); }); catalog.appendChild(grid); catalog.hidden = false; } catch (error) { showError(error); } };
+  $('role').onchange = () => {
+    const roleId = $('role').value;
+    if (latestView?.started !== false && latestView?.run_id) call({ action: 'switch_role', role_id: roleId, run_id: latestView.run_id, expected_turn: latestView.turn }).catch(showError);
+    else { updateRolePreview(roleId); updateDialogueTargets(roleId); setInputMode(inputMode); }
+  };
+  $('freeActionForm').onsubmit = async (event) => { event.preventDefault(); const input = $('freeAction'); const text = input.value.trim(); if (!text) { showError(new Error(inputMode === 'dialogue' ? '请先输入对话内容。' : '请先描述自由行动。')); return; } try { if (inputMode === 'dialogue') await submitCharacterDialogue(text); else await submitNarrativeAction(null, text); input.value = ''; } catch (error) { showError(error); } };
+  $('start').onclick = () => call({action:'start', role_id: $('role').value, dungeon_id: selectedDungeonId}).catch(showError); refresh().catch(() => {});
+  if (new URLSearchParams(location.search).get('panel') === 'helmet') setDrawer('helmetDrawer', true);
+  updateRolePreview($('role').value);
+  updateDialogueTargets($('role').value);
+  setInputMode('action');
+</script>
+</body>
+</html>

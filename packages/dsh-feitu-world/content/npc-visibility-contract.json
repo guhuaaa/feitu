@@ -1,0 +1,17 @@
+{
+  "schema": "feitu-world/npc-visibility/v1",
+  "source": "feitu_campaign/feitu-last-train.npcs.json",
+  "visible_npcs": {
+    "xumeng": {
+      "source_id": "xu_meng",
+      "required_source_tokens": ["场外指挥与救援协调", "保护队员", "完成孢子收容"],
+      "visible_statuses": ["OUTER_SUPPORT", "VERIFYING_SIGNAL", "RATING_REVISED", "CHANNEL_UNSTABLE", "OFFLINE"]
+    },
+    "linlan": {
+      "source_id": "lin_lan",
+      "required_source_tokens": ["场外联络与救援协调", "明确数据", "自保优先"],
+      "visible_statuses": ["AVAILABLE", "DATA_REQUIRED", "CHANNEL_UNSTABLE", "OFFLINE"]
+    }
+  },
+  "hidden_fields": ["pressure", "pressureValue", "drives", "hardBoundaries", "wants", "personalityHex"]
+}

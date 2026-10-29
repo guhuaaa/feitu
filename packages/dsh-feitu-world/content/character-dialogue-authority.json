@@ -1,0 +1,108 @@
+{
+  "schema": "feitu-world/character-dialogue-authority/v1",
+  "compiled_from": [
+    "analysis/target_dungeon/character_state_timeline.json",
+    "analysis/target_dungeon/relationship_timeline.json",
+    "simulation/game_design/dialogue/character_voice_profiles.json",
+    "simulation/decision_models/char_li_nianchuan_decision_model.json",
+    "simulation/decision_models/char_zhu_ning_decision_model.json",
+    "simulation/decision_models/char_xu_meng_decision_model.json"
+  ],
+  "profiles": {
+    "zhunin": {
+      "canonical_id": "char_zhu_ning",
+      "name": "祝宁",
+      "voice_rules": ["以可观察证据组织判断", "紧急时用短而明确的指令", "可有克制的反问，不以无证据的乐观安慰替代判断"],
+      "core_drives": ["生存", "识别并净化污染源", "保护仍可合作的队友"],
+      "hard_boundaries": ["不凭未知信息行动", "活跃孢子环境中不主动暴露皮肤", "不把攻击污染核心等同于完成净化"],
+      "relationship_rules": ["对李念川：保护但不放弃核验", "对徐萌：报告可验证事实，不夸大结论"],
+      "source_refs": ["E000001", "E000026", "E000701", "E000719", "E000729"]
+    },
+    "linenchuan": {
+      "canonical_id": "char_li_nianchuan",
+      "name": "李念川",
+      "voice_rules": ["口语化，可用轻微吐槽缓冲压力", "承认能力边界后偏向可执行的协作", "污染上升时避免轻率承诺"],
+      "core_drives": ["生存", "保持与可靠队友同场", "完成清理工作"],
+      "hard_boundaries": ["不凭未知规则宣称结果", "无通讯通道时不进行远端交互"],
+      "relationship_rules": ["对祝宁：判断被验证后才提高跟随与救援优先级", "对徐萌：通讯有效时以队员身份汇报现场事实"],
+      "source_refs": ["E000169", "E000665", "E000777"]
+    },
+    "xumeng": {
+      "canonical_id": "char_xu_meng",
+      "name": "徐萌",
+      "voice_rules": ["简短、克制、队长式指令", "先确认可追溯信息再授权", "情绪不外露但持续承担外层收容责任"],
+      "core_drives": ["保护队员", "完成孢子收容", "组织救援"],
+      "hard_boundaries": ["不主动放弃失联队员", "不将未经确认的推测当作规则", "无入口时不承诺即时抵达"],
+      "relationship_rules": ["对祝宁：要求验证链", "对李念川：认可队员信号但仍核验"],
+      "source_refs": ["E000171", "E000176", "E000368", "E000418", "E000432"]
+    }
+  },
+  "scene_states": {
+    "sewer-rest-v1": {
+      "node_id": "NODE_002",
+      "location_id": "L003",
+      "timeline_id": "T002",
+      "characters": {
+        "zhunin": {
+          "known": ["李念川头痛、暴躁、眼红且拒绝上报"],
+          "suspected": ["李念川可能继续失控"],
+          "unknown": ["活污染源的位置"],
+          "current_goal": "监护李念川并判断风险",
+          "relationship_state": "与李念川保持合作但持枪戒备",
+          "source_refs": ["E000300", "E000303", "E000306"]
+        },
+        "linenchuan": {
+          "known": ["自己不适", "工作守则要求报告异常"],
+          "suspected": ["祝宁持枪可能针对自己"],
+          "unknown": ["活鱼人即将出现", "自身症状来源"],
+          "current_goal": "喘气后返回工作",
+          "relationship_state": "与祝宁短暂双向戒备",
+          "source_refs": ["E000292", "E000300", "E000304"]
+        }
+      }
+    }
+  },
+  "rules": [
+    {
+      "id": "LN-DECEPTION-01",
+      "character_id": "linenchuan",
+      "priority": 100,
+      "when": {"scene_id": "sewer-rest-v1", "node_id": "NODE_002", "location_id": "L003", "input_any": ["感觉", "难受", "头疼", "头痛", "眼睛", "还好吗", "没事吧", "症状"]},
+      "directive": "承认可观察到的不适，但主观上把严重程度说轻；不得自行断言症状来源。",
+      "source_refs": ["E000300", "E000303", "E000304"]
+    },
+    {
+      "id": "LN-REPORT-OPENING",
+      "character_id": "linenchuan",
+      "priority": 90,
+      "when": {"scene_id": "sewer-rest-v1", "node_id": "NODE_002", "location_id": "L003", "input_any": ["徐萌", "报告", "上报", "告诉", "转告", "联系"]},
+      "directive": "可以答应向徐萌报告，但不得把尚未发生的通讯说成已经完成，也不得虚构徐萌的回复；仍会淡化自己的症状。",
+      "forbidden_reply_patterns": ["(?:已经|刚刚|刚才).{0,8}(?:报告|上报|告诉|联系).{0,5}徐萌", "徐萌.{0,8}(?:回复|批准|同意|说)"],
+      "source_refs": ["E000300", "E000303", "E000304"]
+    },
+    {
+      "id": "LN-INFO-01",
+      "character_id": "linenchuan",
+      "priority": 80,
+      "when": {"fact_any": ["活污染物", "活鱼人"], "communication_in": ["AVAILABLE", "USED"]},
+      "directive": "已确认活污染物且通讯可用时，发送求救与风险信号；只陈述已确认事实。",
+      "source_refs": ["E000345", "E000355", "E000368"]
+    },
+    {
+      "id": "ZN-INFO-01",
+      "character_id": "zhunin",
+      "priority": 80,
+      "when": {"input_any": ["异常", "判断", "确认", "怎么回事", "哪里", "线索", "读数"]},
+      "directive": "调查可观察差异，并以读数或物理迹象验证；未经验证的判断必须保持为推测。",
+      "source_refs": ["E000646", "E000669", "E000719", "E000729"]
+    },
+    {
+      "id": "XM-DECEPTION-01",
+      "character_id": "xumeng",
+      "priority": 100,
+      "when": {"always": true},
+      "directive": "信息不足时明确保持未知，不虚构内场结果，也不把未经确认的推测当作正式情报。",
+      "source_refs": ["E000422", "E000424", "E000432"]
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "status": "PLAYABLE_ROUTE_GRAPH",
+  "nodes": [
+    "START",
+    "NODE_001",
+    "NODE_002",
+    "NODE_003",
+    "NODE_004",
+    "NODE_005",
+    "NODE_006",
+    "NODE_007",
+    "NODE_008",
+    "NODE_009",
+    "NODE_010",
+    "NODE_011",
+    "NODE_012",
+    "NODE_013_ZN",
+    "NODE_013_LN",
+    "NODE_014",
+    "NODE_015",
+    "NODE_016",
+    "NODE_017",
+    "NODE_018",
+    "ENDING_NODE_01",
+    "ENDING_NODE_02",
+    "ENDING_NODE_03",
+    "ENDING_NODE_04",
+    "ENDING_NODE_05"
+  ],
+  "edges": [
+    {
+      "from": "START",
+      "to": "NODE_001",
+      "via": "GAME_START"
+    },
+    {
+      "from": "NODE_001",
+      "to": "NODE_002",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_002",
+      "to": "NODE_003",
+      "via": [
+        "CHOICE_001_PROTECT_REPORT",
+        "CHOICE_002_PRESS_CONTINUE",
+        "CHOICE_003_SELF_REPORT",
+        "CHOICE_004_CONCEAL_SYMPTOM"
+      ]
+    },
+    {
+      "from": "NODE_003",
+      "to": "NODE_004",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_004",
+      "to": "NODE_005",
+      "via": [
+        "CHOICE_005_SEND_EVIDENCE_ZN",
+        "CHOICE_006_SEND_SIGNAL_LN"
+      ]
+    },
+    {
+      "from": "NODE_004",
+      "to": "NODE_006",
+      "via": [
+        "CHOICE_007_DELAY_SIGNAL"
+      ]
+    },
+    {
+      "from": "NODE_005",
+      "to": "NODE_016",
+      "via": [
+        "CHOICE_008_HOLD_ENTRY"
+      ]
+    },
+    {
+      "from": "NODE_005",
+      "to": "NODE_017",
+      "via": [
+        "CHOICE_009_EVACUATE_NOW"
+      ]
+    },
+    {
+      "from": "NODE_005",
+      "to": "NODE_007",
+      "via": [
+        "CHOICE_010_ENTER_DEEP_FIELD"
+      ]
+    },
+    {
+      "from": "NODE_006",
+      "to": "NODE_007",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_007",
+      "to": "NODE_008",
+      "via": "AUTO"
+    },
+    {
+      "from": "NODE_008",
+      "to": "NODE_009",
+      "via": [
+        "CHOICE_011_STAY_AND_SHARE"
+      ]
+    },
+    {
+      "from": "NODE_008",
+      "to": "NODE_010",
+      "via": [
+        "CHOICE_012_SPLIT_AND_ACT"
+      ]
+    },
+    {
+      "from": "NODE_009",
+      "to": "NODE_012",
+      "via": [
+        "CHOICE_013_CHECK_OUTSIDE_ZN",
+        "CHOICE_014_SHARE_ANOMALY_LN"
+      ]
+    },
+    {
+      "from": "NODE_009",
+      "to": "NODE_010",
+      "via": [
+        "CHOICE_015_FOCUS_MANIFESTATION"
+      ]
+    },
+    {
+      "from": "NODE_010",
+      "to": "NODE_011",
+      "via": "FEEDBACK"
+    },
+    {
+      "from": "NODE_011",
+      "to": "NODE_012",
+      "via": [
+        "CHOICE_016_RECHECK_CORE"
+      ]
+    },
+    {
+      "from": "NODE_011",
+      "to": "NODE_018",
+      "via": [
+        "CHOICE_017_WAIT_FOR_FALSE_RESULT"
+      ],
+      "condition": "LIVE_SIGNAL_SENT_BEFORE_FIELD_EXPANSION=false AND COMMUNICATION_LOST=true AND FIELD_EXPANDED=true"
+    },
+    {
+      "from": "NODE_012",
+      "to": "NODE_013_ZN",
+      "via": [
+        "CHOICE_018_OBSERVE_TESTIMONY_ZN",
+        "CHOICE_019_CREATE_CRUSH_ZN"
+      ],
+      "condition": "PLAYER_ROLE=CHARACTER::祝宁"
+    },
+    {
+      "from": "NODE_012",
+      "to": "NODE_013_LN",
+      "via": [
+        "CHOICE_022_COORDINATE_TESTIMONY_LN",
+        "CHOICE_023_DRIVER_CRUSH_LN"
+      ],
+      "condition": "PLAYER_ROLE=CHARACTER::李念川"
+    },
+    {
+      "from": "NODE_013_ZN",
+      "to": "NODE_014",
+      "via": "INTERACTIVE_EVENT_RESULT"
+    },
+    {
+      "from": "NODE_013_LN",
+      "to": "NODE_014",
+      "via": "INTERACTIVE_EVENT_RESULT"
+    },
+    {
+      "from": "NODE_014",
+      "to": "NODE_015",
+      "via": [
+        "CHOICE_020_PROTECT_IN_TIME",
+        "CHOICE_021_DELAY_PROTECTION"
+      ]
+    },
+    {
+      "from": "NODE_015",
+      "to": "ENDING_NODE_01",
+      "via": "STATE_GATE",
+      "condition": "ZHU_NING_STABILIZED=true"
+    },
+    {
+      "from": "NODE_015",
+      "to": "ENDING_NODE_03",
+      "via": "STATE_GATE",
+      "condition": "TREATMENT_WINDOW_MISSED=true"
+    },
+    {
+      "from": "NODE_016",
+      "to": "ENDING_NODE_02",
+      "via": "STATE_GATE"
+    },
+    {
+      "from": "NODE_017",
+      "to": "ENDING_NODE_04",
+      "via": "INTERACTIVE_EVENT_SUCCESS"
+    },
+    {
+      "from": "NODE_018",
+      "to": "ENDING_NODE_05",
+      "via": "STATE_GATE"
+    }
+  ],
+  "checks": {
+    "all_endings_reachable": true,
+    "node_010_not_ending": true
+  }
+}

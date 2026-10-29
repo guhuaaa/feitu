@@ -1,0 +1,43 @@
+{
+  "schema": "feitu-world/world-registry/v1",
+  "world_id": "feitu-world",
+  "name": "废土世界",
+  "regions": [
+    {
+      "id": "REGION_103",
+      "name": "103区清洁者网络",
+      "status": "ACTIVE",
+      "hub_location": "L010",
+      "source_refs": ["feitu_campaign/feitu-last-train.locations.json", "feitu_campaign/feitu-last-train.state.json"]
+    }
+  ],
+  "dungeons": [
+    {
+      "id": "one-line-last-train",
+      "name": "消失的一号线末班车",
+      "region_id": "REGION_103",
+      "status": "PLAYABLE",
+      "content_manifest": "packages/dsh-feitu-world/content/one-line-last-train.content.json",
+      "entry_node": "START"
+    }
+  ],
+  "announced_dungeons": [
+    {"id": "eating-hotpot", "name": "吃人的火锅店", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "12-20", "task_type": "随机任务", "source_ref": "副本列表.md"},
+    {"id": "hunting-house", "name": "追杀人的房子", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "28-37", "task_type": "随机任务", "source_ref": "副本列表.md"},
+    {"id": "strange-aquarium", "name": "怪奇海洋馆", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "44-58", "task_type": "支线任务", "source_ref": "副本列表.md"},
+    {"id": "black-dentist", "name": "黑色的牙医馆", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "70-83", "task_type": "随机任务", "source_ref": "副本列表.md"},
+    {"id": "lost-village", "name": "遗落的荒村", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "97-114", "task_type": "支线任务", "source_ref": "副本列表.md"},
+    {"id": "inescapable-company", "name": "无法离开的公司", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "123-137", "task_type": "随机任务", "source_ref": "副本列表.md"},
+    {"id": "floating-sand-island", "name": "虚幻的浮沙岛", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "146-159", "task_type": "支线任务", "source_ref": "副本列表.md"},
+    {"id": "another-self", "name": "另一个自己", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "170-181", "task_type": "随机任务", "source_ref": "副本列表.md"},
+    {"id": "new-century-hotel", "name": "新世纪酒店", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "195-220", "task_type": "支线任务", "source_ref": "副本列表.md"},
+    {"id": "divine-descent", "name": "神降", "status": "ANNOUNCED", "playable": false, "region_id": null, "chapter_range": "233-242", "task_type": "支线任务", "source_ref": "副本列表.md"}
+  ],
+  "expansion_policy": {
+    "new_dungeon_requires": ["source_contract", "content_audit", "player_acceptance_cases", "release_manifest"],
+    "unknown_regions_are_not_player_visible": true,
+    "runtime_owns_world_state": true,
+    "announced_dungeons_are_catalog_only": true,
+    "playable_dungeon_requires_content_manifest": true
+  }
+}

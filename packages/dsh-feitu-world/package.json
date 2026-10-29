@@ -1,0 +1,62 @@
+{
+  "name": "dsh-feitu-world",
+  "version": "0.2.5",
+  "description": "DeepSeek Harness plugin for the deterministic Feitu World one-line last-train dungeon.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./runtime": "./lib/runtime.js"
+  },
+  "files": [
+    "lib",
+    "ui",
+    "content",
+    "server.mjs",
+    "start-preview.ps1",
+    "一键启动预览.cmd",
+    "cordis.patch.yml",
+    "README.md",
+    "HEADSET_HUD_SOURCE_NOTES.md",
+    "RELEASE_MANIFEST.json"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test test/runtime.test.mjs test/player-acceptance.mjs && npm run audit:content && npm run compile:author -- --check && npm run test:authoring-import",
+    "test:player-cases": "node ../../tools/run_dsh_player_cases.mjs",
+    "replay:action-log": "node ../../tools/replay_dsh_action_log.mjs",
+    "probe:dsh": "node ../../tools/probe_dsh.mjs",
+    "setup:dsh": "node ../../tools/setup_dsh_workspace.mjs",
+    "verify:preview": "node ../../tools/verify_preview_contract.mjs",
+    "verify:player-surface": "node ../../tools/verify_player_surface.mjs",
+    "verify:accessibility": "node ../../tools/verify_preview_accessibility.mjs",
+    "verify:dsh-plugin": "node ../../tools/verify_dsh_plugin.mjs",
+    "verify:pack": "node ../../tools/verify_dsh_pack.mjs",
+    "verify:security": "node ../../tools/verify_no_secrets.mjs",
+    "verify:extension": "node ../../tools/validate_dsh_world_extension.mjs && node ../../tools/validate_dsh_world_extension.mjs --file simulation/game_design/runtime/world_extension_playable_example.json && node ../../tools/test_dsh_world_extension_negative.mjs",
+    "verify:catalog": "node ../../tools/test_dsh_world_catalog.mjs",
+    "verify:ci": "node ../../tools/verify_dsh_ci_contract.mjs",
+    "verify:completion": "node ../../tools/verify_project_completion.mjs",
+    "verify:release": "node ../../tools/run_dsh_release_gate.mjs",
+    "prepublishOnly": "npm run test && npm run verify:pack",
+    "compile:author": "node ../../tools/compile_dsh_author_graph.mjs",
+    "test:authoring-import": "node ../../tools/test_dsh_authoring_import.mjs",
+    "test:dsh-eval": "node ../../tools/run_dsh_eval.mjs",
+    "verify:dsh-baseline": "node ../../tools/verify_dsh_eval_baseline.mjs .dsh-eval/latest/report.json ../../simulation/game_design/implementation/DSH_EVAL_BASELINE.json",
+    "audit:content": "node ../../tools/validate_dsh_content.mjs",
+    "preview": "node server.mjs"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.1 <5"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  }
+}
