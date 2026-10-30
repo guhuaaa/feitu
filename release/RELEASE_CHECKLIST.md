@@ -25,11 +25,12 @@ npm.cmd run release:smoke -- --channel github
 - [ ] `CHANGELOG.md` 已加入本版本玩家可见变化和已知问题。
 - [ ] 桌面、运行时、锁文件和 release manifest 版本一致。
 - [ ] 秘密扫描、运行时打包审计和候选包校验通过。
-- [ ] 56 项运行时/玩家验收测试通过，包括旧存档迁移、完整性失败关闭和跨实例恢复。
+- [ ] 当前版本运行时/玩家验收测试通过，包括旧存档迁移、完整性失败关闭和跨实例恢复；私有原作比对缺失时只允许该单独审计项显式跳过。
 - [ ] 两个渠道烟测均出现 `desktop_start`、`runtime_ready`、`desktop_ready`，退出码为 0。
 - [ ] 保留上一稳定版 ZIP 与校验文件，执行真实包存档升级验收并保存报告：`node ../../tools/verify-desktop-upgrade.mjs --from <旧版本> --to <新版本>`。
 - [ ] 旧档关键状态、新版再次保存和重启恢复通过；若宣称支持二进制回退，上一版本读取新档也须通过。
 - [ ] 在干净 Windows 10/11 用户环境完成启动、保存、退出和恢复测试。
+- [ ] 同一最终成品完成 60 分钟完整路线及独立重启恢复；报告绑定成品摘要、`status: PASS` 且 `meets60MinuteDuration: true`。
 
 ## 3. Steam 发布
 
@@ -44,6 +45,7 @@ npm.cmd run release:smoke -- --channel github
 ## 4. GitHub 预发行
 
 - [ ] GitHub Actions 的 Windows Artifact 构建和最终 ZIP 复核通过。
+- [ ] 先以默认仅校验模式执行远端构建；确认测试包上传授权后，才勾选 `upload_test_artifact` 提供可下载附件。
 - [ ] 核对 `.zip.sha256` 与 Release 附件一致。
 - [ ] 先创建 Draft Prerelease，人工检查标题、变更说明和已知问题。
 - [ ] 未签名构建不得作为面向普通玩家的正式公开下载。

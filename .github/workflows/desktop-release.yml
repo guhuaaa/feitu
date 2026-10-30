@@ -3,6 +3,11 @@ name: Desktop release candidate
 on:
   workflow_dispatch:
     inputs:
+      upload_test_artifact:
+        description: Upload a downloadable test ZIP to repository Actions artifacts
+        required: true
+        type: boolean
+        default: false
       create_draft_release:
         description: Create a private draft GitHub prerelease after verification
         required: true
@@ -71,6 +76,7 @@ jobs:
           $version = (Get-Content desktop/electron/package.json -Raw | ConvertFrom-Json).version
           "version=$version" >> $env:GITHUB_OUTPUT
       - uses: actions/upload-artifact@v4
+        if: inputs.upload_test_artifact
         with:
           name: FeituWorld-${{ steps.version.outputs.version }}-windows-x64
           path: |

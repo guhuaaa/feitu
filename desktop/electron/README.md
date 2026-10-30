@@ -74,10 +74,10 @@ npm.cmd run steam:vdf -- --app-id <APP_ID> --depot-id <DEPOT_ID> --branch beta -
 
 ## 当前资源预算
 
-- Steam Windows 解压目录：381.31 MiB；GitHub ZIP 164.04 MiB
+- 0.2.5 Windows 解压目录：381.34 MiB；GitHub ZIP 164.05 MiB
 - Steam/zip 下载量估计：约 145–210 MiB，最终以 SteamPipe 报告为准
-- 历史短时启动峰值：约 328 MiB（0.2.2）；0.2.4 尚未完成长时间内存测量
-- 商店最低内存建议：1 GB RAM
+- 0.2.5 本机 60 分钟离线长测通过；238 次采样的进程总工作集峰值 688.94 MiB、私有提交量峰值 399.62 MiB。工作集可能重复计共享页，私有提交量不是驻留物理内存。
+- 系统最低内存仍需干净 Windows 环境确认，长测采样不能直接作为商店最低配置。
 
 当前包已有原创应用图标、持久日志、崩溃记录、权限默认拒绝和构建版本校验，但仍未代码签名。公开商业发行还受改编权与项目许可证闸门约束。
 
@@ -85,14 +85,14 @@ npm.cmd run steam:vdf -- --app-id <APP_ID> --depot-id <DEPOT_ID> --branch beta -
 
 `release:github` 从已经验证的桌面候选包创建独立的 GitHub 渠道目录和 ZIP；`release:github:verify` 会把最终 ZIP 解压后逐文件复核。产物名为 `release/artifacts/FeituWorld-<version>-windows-x64.zip`，历史版本 ZIP 保留在 `release/artifacts/`。
 
-`.github/workflows/desktop-release.yml` 只在手动触发时运行。默认只生成 Actions Artifact；必须显式勾选选项才会创建 GitHub 草稿预发行，不会自动公开发布。
+`.github/workflows/desktop-release.yml` 只在手动触发时运行。默认只构建和校验，不上传游戏文件；勾选 `upload_test_artifact` 才会上传可下载的 Actions 测试附件，公开仓库的已登录读者可能下载这些附件。`create_draft_release` 单独控制草稿预发行，默认关闭。
 
 ## 真实发行包升级验收
 
 保留上一稳定版本的 ZIP 和 `.zip.sha256` 后，从本目录执行：
 
 ```powershell
-node ../../tools/verify-desktop-upgrade.mjs --from 0.2.3 --to 0.2.4
+node ../../tools/verify-desktop-upgrade.mjs --from 0.2.4 --to 0.2.5
 ```
 
-该命令解压两版发行包，用各包内置的 Electron/Node 运行各自的游戏服务，验证旧档恢复、新版保存重启、回退读取以及一个离线结局。使用隔离存档目录并清除 API Key；不替代窗口交互、Steam 安装更新和双机 Cloud 测试。0.2.2 → 0.2.3 与 0.2.3 → 0.2.4 均已通过，验收报告随版本保存在 `release/artifacts/`。
+该命令解压两版发行包，用各包内置的 Electron/Node 运行各自的游戏服务，验证旧档恢复、新版保存重启、回退读取以及一个离线结局。使用隔离存档目录并清除 API Key；不替代窗口交互、Steam 安装更新和双机 Cloud 测试。0.2.2 → 0.2.3、0.2.3 → 0.2.4 和 0.2.4 → 0.2.5 均已通过，验收报告随版本保存在 `release/artifacts/`。
